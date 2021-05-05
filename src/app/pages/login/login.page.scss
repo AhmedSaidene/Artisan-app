@@ -1,0 +1,37 @@
+ion-toolbar {
+}
+.my-custom-interface {
+    --background :#e4261b;
+    color: red;
+  }
+.my-custom-interface .select-interface-option {
+    color: red;
+  }
+
+div img {
+}
+img.logo {
+    height:40px;
+}
+h1 {
+    color:white;
+    font-weight: bold;
+}
+ion-content {
+    --background: #28367a;
+}
+ion-button , form{
+    ion-item {
+        border-radius: 5px;
+        border:none;
+}
+}
+
+.form-btn {
+    text-transform: uppercase;
+    --background :#e4261b;
+}
+.inscrire-btn {
+    color:white;
+    
+}

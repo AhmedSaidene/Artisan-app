@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+          text=""
+          icon="arrow-back-sharp" defaultHref="entreprise">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Inscription</ion-title>
+    <p slot="end">3 sur 3</p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content translucent="true" class="ion-padding">
+  <ion-header class="title">
+    <h1><span> 3 </span> Configuration Devis</h1>
+  </ion-header>
+  <form class="ion-padding">
+    <ion-item lines="none" class="ion-select-item" color="primary">
+      <ion-select  slot="" [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Devis forme standard">    
+        <!-- <ion-select-option *ngFor="let langue of langues" [value]="user"></ion-select-option>-->
+          <ion-select-option class="select-interface-option" value="nes">Créer un nouveau devis</ion-select-option>
+          
+        </ion-select>
+    </ion-item>
+    <ion-item lines="none" class="input-item">
+      <ion-input  [(ngModel)]="devis.iban"
+                  name="iban" 
+                  placeholder="Identifiant bancaire (IBAN)"></ion-input>
+    </ion-item>
+  </form>
+
+  <ion-footer class="ion-padding" translucent="true">
+    <ion-button class="btn-suivant" expand="block" 
+    (click)="submit()" >Terminer 
+    <ion-icon></ion-icon>
+    </ion-button>
+  </ion-footer>
+</ion-content>
+
+
+
+

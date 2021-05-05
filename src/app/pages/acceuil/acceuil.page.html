@@ -1,0 +1,43 @@
+<ion-header  class="ion-padding">
+  <ion-toolbar class="home-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="custom"></ion-menu-button>
+    </ion-buttons>
+    <img slot="end" src="../../../assets/images/logo.png" alt="logo">
+  </ion-toolbar>
+  
+  <ion-slides pager="true" [options]="slideOpts"> 
+    <ion-slide>
+      <img src="../../../assets/images/logo.png" alt="">
+    </ion-slide>
+    <ion-slide>
+      <img src="../../../assets/images/logo.png" alt="">
+    </ion-slide>
+    <ion-slide>
+      <img src="../../../assets/images/logo.png" alt="">
+    </ion-slide>
+  </ion-slides>
+</ion-header>
+  
+<ion-content class="ion-padding">
+  <ion-toolbar>
+    <ion-searchbar placeholder="Recherche"></ion-searchbar>
+  </ion-toolbar>
+
+    <ion-button size="large" class="custom" expand="block" routerLink="/home/clients/clients">
+      <ion-icon  name="star"></ion-icon>
+      Clients
+    </ion-button>
+    <br>
+    <ion-button size="large" class="custom" expand="block" routerLink="/home/devis/devis">
+      <ion-icon slot="start" name="star"></ion-icon>
+      <p>Devis</p>
+    </ion-button>
+    <br>
+    <ion-button  size="large" class="custom" expand="block" routerLink="/home/factures/factures">
+      <ion-icon slot="start" name="star"></ion-icon>
+      Factures
+    </ion-button>
+
+ 
+</ion-content>

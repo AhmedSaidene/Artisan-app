@@ -1,3 +1,74 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" menuId="custom" contentId="main" class="my-custom-menu">
+    <ion-header>
+        <ion-card>
+<ion-card-content>
+<ion-grid fixed>
+   <ion-row>
+     <ion-col size="3">
+         <img [src]="" />
+     </ion-col>
+     <ion-col size="9">
+         <ion-card-title>Nom Entreprise</ion-card-title> 
+         <p>Nom Utilisateur</p>           
+     </ion-col>
+   </ion-row>
+</ion-grid>
+</ion-card-content>
+</ion-card>
+    </ion-header>
+
+    <ion-content class="ion-padding" >
+      
+      <ion-menu-toggle>
+        <ion-button routerLink="/home/acceuil"  expand="block">
+        <ion-icon name="home-outline"></ion-icon>
+        <b>Acceuil</b>
+        </ion-button>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle>
+        <ion-button routerLink="/home/clients/clients"  expand="block">
+        <ion-icon name="home-outline"></ion-icon>
+        <b>Clients</b>
+        </ion-button>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-button routerLink="/home/devis/devis"  expand="block">
+        <ion-icon name="home-outline"></ion-icon>
+        <b>Devis</b>
+        </ion-button>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-button routerLink="/home/factures/factures"  expand="block">
+        <ion-icon name="albums-outline"></ion-icon>
+        <b>Factures</b>
+        </ion-button>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-button routerLink="/home/categories/categories"  expand="block">
+        <ion-icon name="home-outline"></ion-icon>
+        <b>Catégories</b>
+        </ion-button>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-button routerLink="/home/paramètres"  expand="block">
+        <ion-icon name="cog-outline"></ion-icon>
+        <b>Settings</b>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-content>
+
+    <ion-footer class="ion-padding">
+      <ion-menu-toggle>
+        <ion-button (click)="logout()" expand="block">
+        <ion-icon name=""></ion-icon>
+        <b>Déconnection</b>
+        </ion-button>
+      </ion-menu-toggle>
+      <br>
+    </ion-footer>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

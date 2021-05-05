@@ -1,0 +1,66 @@
+<ion-app>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+          text=""
+          icon="arrow-back-sharp" defaultHref="user">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Inscription</ion-title>
+    <p slot="end">2 sur 3</p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content translucent="true" class="ion-padding">
+  <div class="title">
+    <p><span> 2 </span> Coordonnées de votre entreprise</p>
+  </div>
+  <form class="ion-padding">
+    <ion-item lines="none" class="input-item">
+      <ion-input name="lib" 
+                 type="text"
+                 [(ngModel)] = "postData.lib"
+                 placeholder="Nom de l'entreprise"></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="input-item">
+      <ion-input name="email" 
+                 type="email"
+                 [(ngModel)] = "postData.email" 
+                 placeholder="Email de l'entreprise"></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="input-item"> 
+      <ion-input name="adresse" 
+                 type="text"
+                 [(ngModel)] = "postData.adresse"  
+                 placeholder="Adresse enreprise"></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="input-item">
+      <ion-input name="tel" 
+                 type="text"
+                 [(ngModel)] = "postData.tel"  
+                 placeholder="Numero téléphone Entreprise"></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="input-item">
+      <ion-input name="logo" 
+                 type="text"
+                 [(ngModel)] = "postData.email"  
+                 placeholder="Ajouter votre logo"></ion-input>
+    </ion-item>
+  </form>
+</ion-content>
+<ion-footer class="ion-padding" translucent="true">
+  <ion-button class="btn-suivant" expand="block" 
+  (click)="submit()" >Suivant 
+  <ion-icon name="chevron-forward"></ion-icon>
+  </ion-button>
+</ion-footer>
+
+</ion-app>
+  
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+          text=""
+          icon="arrow-back-sharp" defaultHref="home/acceuil">
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <br>
+  <div class="header">
+    <ion-icon name="albums" size="large"></ion-icon>
+    <h1>DEVIS</h1>
+    <br>
+  </div>
+
+   <ion-toolbar>
+    <ion-button routerLink="/home/devis/creer-devis" size="large" class="custom" expand="block">
+      Créer un nouveau devis
+    </ion-button>
+
+    <br>
+    <ion-button routerLink="/home/devis/get-devis" size="large" class="custom" expand="block">
+      Devis en cours
+    </ion-button>
+
+    <br>
+    <ion-button routerLink="/home/devis/statistiques" size="large" class="custom" expand="block">
+      Statistiques
+    </ion-button>
+  </ion-toolbar> 
+
+ 
+</ion-content>

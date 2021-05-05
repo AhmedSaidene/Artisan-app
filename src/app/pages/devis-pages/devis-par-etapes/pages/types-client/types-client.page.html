@@ -1,0 +1,33 @@
+<ion-app>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title slot="start">Création de Devis</ion-title>
+    <p slot="end">1 sur 6</p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" class="ion-padding">
+  <div class="title">
+    <p><span> 1 </span> Vos Informations</p>
+  </div>
+  <div fullscreen="true" class="ion-padding">
+    <p>votre client ?</p>
+    <br>
+    <ion-button expand="block">
+      Particulier
+    </ion-button>
+    <ion-button expand="block">
+      Particulier
+    </ion-button>
+   
+  </div>
+
+</ion-content>
+<ion-footer class="ion-padding" translucent="true">
+  <ion-button class="btn-suivant" expand="block" 
+  (click)="submit()" >Suivant 
+  <ion-icon name="chevron-forward"></ion-icon>
+  </ion-button>
+</ion-footer>
+
+</ion-app>

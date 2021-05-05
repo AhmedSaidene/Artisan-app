@@ -1,0 +1,40 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Création de Devis</ion-title>
+      <p slot="end">4 sur 6</p>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content fullscreen="true" class="ion-padding">
+    <div class="title">
+      <p><span> 4 </span> Type de traveaux</p>
+    </div>
+    <div fullscreen="true" class="ion-padding">
+      <p>Quelle type de traveaux allez vous faire dans cette pièce ?</p>
+      <br>
+     <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button></ion-button>
+        </ion-col>
+        <ion-col>
+          <div>2 of 3</div>
+        </ion-col>
+        <ion-col>
+          <div>3 of 3</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+     
+    </div>
+  
+  </ion-content>
+  <ion-footer class="ion-padding" translucent="true">
+    <ion-button class="btn-suivant" expand="block" 
+    (click)="submit()" >Suivant 
+    <ion-icon name="chevron-forward"></ion-icon>
+    </ion-button>
+  </ion-footer>
+  
+  </ion-app>

@@ -1,0 +1,31 @@
+ion-content {
+    color : primary;
+    text-align : center;
+}
+h2 {
+    font-weight: bold;
+}
+ion-icon {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.box {
+    margin-left: auto;
+    margin-right: auto;
+    height: 60%;
+    width: 80%;
+    border-radius: 5px;
+    box-shadow: 15px 10px 20px rgba(128, 128, 128, 0.2), -3px 0 10px rgba(128, 128, 128, 0.2);
+    ion-icon {
+        color: rgba(82, 165, 0);
+        font-size: 120px;
+        position: relative;
+        top:30%;
+
+    }
+}
+ .close {
+    color: rgba(228, 38, 27);
+    font-size: 80px;
+}
