@@ -73,12 +73,17 @@ ion-header{
       padding-left: 20px;
     }
 }
-div.header {
+
+.header {
     color: #28367a;
     text-align: center;
+    
   h1 {
     font-weight: bold;
   } 
+  ion-icon {
+    font-size: 400%;
+  }
 
 }
 div.title {

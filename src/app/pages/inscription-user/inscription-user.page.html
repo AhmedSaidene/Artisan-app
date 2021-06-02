@@ -1,7 +1,7 @@
 <ion-app>
   <ion-header class="ion-no-border" fullscreen="true">
   <ion-toolbar color="primary">
-    <ion-title slot="start">Inscription</ion-title>
+    <h1>Inscription</h1>
     <p slot="end">1 sur 3</p>
   </ion-toolbar>
 </ion-header>
@@ -13,10 +13,7 @@
   <form class="ion-padding">
     <ion-item lines="none" class="ion-select-item" color="primary">
       <ion-select  slot="" interface="popover" placeholder="Choisir votre langue">   
-        <!-- <ion-select-option *ngFor="let langue of langues" [value]="user"></ion-select-option>-->
-        <ion-select-option class="select-interface-option" value="nes">NES</ion-select-option>
-          <ion-select-option value="n64">Nintendo64</ion-select-option>
-          <ion-select-option value="ps">PlayStation</ion-select-option>
+        <ion-select-option class="select-interface-option" value="nes">langue</ion-select-option>
         </ion-select>
     </ion-item>
     <ion-item lines="none" class="input-item">
@@ -52,11 +49,12 @@
   </form>
 </ion-content>
 <ion-footer class="ion-padding" translucent="true">
-    <ion-button class="btn-suivant" expand="block" 
-    (click)="submit()" >Suivant 
-   <ion-icon name="chevron-forward"></ion-icon>
-    </ion-button>
-  </ion-footer>
+  <ion-button class="btn-suivant" expand="block" 
+  (click)="submit()">
+  <span>Suivant</span>
+  <ion-icon size="small" name="chevron-forward"></ion-icon>
+  </ion-button>
+</ion-footer>
 </ion-app>
   
 

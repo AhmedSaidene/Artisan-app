@@ -1,0 +1,22 @@
+ion-select {
+  --placeholder-color: white;
+  --placeholder-opacity: 1;
+  width: 100%;
+}
+ion-select::part(icon) {
+  color: white;
+  opacity: 1;
+}
+ion-footer {
+  ion-button{
+    text-align:center;
+    padding-left: 16px;
+    padding-right:16px;
+    span{
+      text-align:center;
+      width:100%;
+      font-weight: bold;
+      padding-left: 10%;
+    }
+  }
+}

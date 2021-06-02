@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+          text=""
+          icon="arrow-back-sharp" defaultHref="home/acceuil">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Interventions</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+<ion-list-header lines="inset">
+    <ion-col>
+      <ion-row>
+        <ion-searchbar (ionChange)="_ionChange($event)" placeholder="Recherche"></ion-searchbar>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <ion-button size="small"  class="add-btn" (click) = "addUser()">  
+            <ion-icon name="add-circle-sharp"></ion-icon>
+           Ajouter une intervention
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+</ion-list-header>
+
+      
+<ion-list>
+ <div  (click)="openDetails(users)" *ngFor = "let intervention of searchItem" class="item-container">
+<ion-item lines="none" 
+           detail="true">
+           <ion-thumbnail slot="start">
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+          </ion-thumbnail>
+          
+  <ion-label>
+    <h3>{{ intervention.lib.fr }}</h3>
+  </ion-label>
+</ion-item>
+</div>
+</ion-list>
+
+</ion-content>

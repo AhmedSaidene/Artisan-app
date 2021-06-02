@@ -1,14 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { User } from '../../models/user.model';
-import { UserService } from '../../services/user.service';
-import { take } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { LoginPage } from '../login/login.page';
 import { AuthService } from 'src/app/services/auth.service';
-import { AlertService } from 'src/app/services/alert.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-inscription-user',
@@ -17,10 +13,9 @@ import { AlertService } from 'src/app/services/alert.service';
 })
 export class InscriptionUserPage implements OnInit {
   
-  @Input() user: User;
   
   public postData = {
-    langue : "",
+    //langue : "",
     nom : "",
     prenom : "",
     email: "",
@@ -31,48 +26,35 @@ export class InscriptionUserPage implements OnInit {
   }
 
   constructor(private router: Router,
-              private userService: UserService,
-              private loadingCtrl: LoadingController,
-              private modalController: ModalController,
-              private authService: AuthService,
-              private alertService: AlertService) { }
+    private toastService: ToastService,
+    private authService: AuthService) { }
 
   ngOnInit() {
   }
-
+  
+    validateInputs() {
+      let email = this.postData.email.trim();
+      let password = this.postData.password.trim();
+  
+      return (email.length > 0 && password.length > 0 );
+    }
+   
 async submit() {
-
-    this.authService.register(
-              //this.postData.langue, 
-              this.postData.nom, 
-              this.postData.prenom, 
-              this.postData.email, 
-              this.postData.password, 
-              this.postData.tel,
-              this.postData.entreprise_id,
-              this.postData.role_id,
-              ).subscribe(
-      data => {
-        console.log(data);
-        this.authService.login(this.postData.email, this.postData.password).subscribe(
-          data => {
-            console.log(data);
-          },
-          error => {
-            console.log(error);
-          },
-          () => {
-            this.router.navigate(['/entreprise']);
-          }
-        );
-        this.alertService.presentToast(data['message']);
-      },
-      error => {
-        console.log(error);
-      },
-      () => {
-        
-      }
+ if (this.validateInputs()) {
+  this.authService.register(
+    //this.postData.langue, 
+    this.postData.nom, 
+    this.postData.prenom, 
+    this.postData.email, 
+    this.postData.password, 
+    this.postData.tel,
+    this.postData.entreprise_id,
+    this.postData.role_id,
     );
+    this.router.navigate(['/entreprise']);
+  } else {
+    this.toastService.presentToast('remplir les champs');
+    }
+      
   }
 }

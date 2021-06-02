@@ -3,12 +3,6 @@ import { Router } from '@angular/router';
 import { ToastService } from './../../services/toast.service';
 
 import { AuthService } from './../../services/auth.service';
-import { AlertService } from 'src/app/services/alert.service';
-/*
-import { StorageService } from './../../services/storage.service';
-
-import { AuthConstants } from './../../config/auth-constants';
-*/
 
 @Component({
   selector: 'app-login',
@@ -23,9 +17,8 @@ export class LoginPage implements OnInit {
   }
 
   constructor(private router: Router,
-    private alertService: AlertService,
     private toastService: ToastService,
-    private authService: AuthService,/*
+    private authService: AuthService/*
     private storageService: StorageService */) { }
 
   ngOnInit() {
@@ -40,18 +33,8 @@ export class LoginPage implements OnInit {
 
   loginAction() {
     if (this.validateInputs()) {
-    this.authService.login(this.postData.email, this.postData.password).subscribe(
-      data => {
-        this.alertService.presentToast("Logged In " + data);
-      },
-      error => {
-        console.log(error);
-      },
-      () => {
-      this.router.navigate(['/home/acceuil']);
-      console.log(this.postData);
-      }
-    );
+      
+    this.authService.login(this.postData.email, this.postData.password);
     
     } else {
       this.toastService.presentToast('Il faux remplir les deux champs');

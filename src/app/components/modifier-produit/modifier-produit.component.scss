@@ -1,0 +1,42 @@
+
+.ion-card-container {
+    padding-bottom: 20px;
+    ion-card {
+      padding : 0;
+      margin:0;
+      p {
+        padding: 3px;
+        margin: 0;
+      }
+      ion-card-header {
+        background:#28367a;
+        padding: 0px;
+        p {
+          color: white;
+        }
+      }
+     ion-card-content {
+      background:rgb(228, 228, 228);
+         p { color: grey;
+          font-size: 10px;
+          span {
+            font-weight: bold;
+           color:#28367a;
+         }
+       }
+       padding:0;
+      ion-grid {
+        padding:3%;
+        margin:0;
+        ion-col {
+          padding: 0px;
+          .input-container {
+            border:#28367a;
+            border-radius: 3px;
+          }
+        }}
+     }
+    }
+  }
+  
+  

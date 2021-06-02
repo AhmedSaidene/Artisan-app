@@ -1,13 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { User } from '../../models/user.model';
-import { UserService } from '../../services/user.service';
-import { take } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 import { ValiderInscriptionComponent } from '../../components/valider-inscription/valider-inscription.component';
-import { BuiltinTypeName } from '@angular/compiler';
+import { StorageService } from 'src/app/services/storage.service';
+import { ModelDevisService } from 'src/app/services/model-devis.service';
 
 @Component({
   selector: 'app-configuration-devis',
@@ -17,11 +12,20 @@ import { BuiltinTypeName } from '@angular/compiler';
 export class ConfigurationDevisPage implements OnInit {
 
 devis = {
-  iban : ""
+  iban : "",
+  entrepriseId: ""
 }
-constructor(  private router: Router,
-              private userService: UserService,
-              private modalCtrl: ModalController ) { }
+customPopoverOptions = {
+  cssClass: 'my-class'
+}
+constructor(  private modelDevisService: ModelDevisService,
+              private modalCtrl: ModalController,
+              private storage: StorageService)
+              {
+                this.storage.get('entreprise_id').then((val) => {
+                  this.devis.entrepriseId = val;            
+                });
+              }
 
 ngOnInit() {}
 
@@ -29,14 +33,24 @@ ngOnInit() {}
     const modal = await this.modalCtrl.create({
       component: ValiderInscriptionComponent
     });
-    
-    await modal.present();
-    
-  }
-
- submit() {
+    await modal.present(); 
+  } 
+  submit() {
     console.log(this.devis);
-    this.openValidationModal();
+  this.modelDevisService.post(this.devis).subscribe(
+data => {
+console.log(data);
+if( data['success'] == true){
+
+  console.log(this.devis);
+  this.openValidationModal();
+ 
+}
+},
+error => {
+console.log(error);
+}
+);
 }
 
 }

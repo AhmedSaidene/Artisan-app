@@ -10,23 +10,28 @@ const routes: Routes = [
     children: [
       {
         path: 'factures',
-        loadChildren: () => import('../../pages/factures-pages/factures/factures.module').then( m => m.FacturesPageModule)
+        loadChildren: () => import('./factures/factures.module').then( m => m.FacturesPageModule)
       },
       {
         path: 'creer-facture',
-        loadChildren: () => import('../../pages/factures-pages/creer-facture/creer-facture.module').then( m => m.CreerFacturePageModule)
+        loadChildren: () => import('./creer-facture/creer-facture.module').then( m => m.CreerFacturePageModule)
       },
       {
         path: 'devis-en-facture',
-        loadChildren: () => import('../../pages/factures-pages/devis-en-facture/devis-en-facture.module').then( m => m.DevisEnFacturePageModule)
+        loadChildren: () => import('./devis-en-facture/devis-en-facture.module').then( m => m.DevisEnFacturePageModule)
       },
       {
         path: 'facture-manuelle',
-        loadChildren: () => import('../../pages/factures-pages/facture-manuelle/facture-manuelle.module').then( m => m.FactureManuellePageModule)
+        loadChildren: () => import('./facture-manuelle/facture-manuelle.module').then( m => m.FactureManuellePageModule)
       },
       {
         path: 'get-factures',
-        loadChildren: () => import('../../pages/factures-pages/get-factures/get-factures.module').then( m => m.GetFacturesPageModule)
+        loadChildren: () => import('./get-factures/get-factures.module').then( m => m.GetFacturesPageModule)
+      },
+      {
+        path: '',
+        redirectTo: '/home/factures/factures',
+        pathMatch: 'full' 
       }
     ]
   

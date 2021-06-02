@@ -1,0 +1,27 @@
+ ion-grid {
+   padding: 0;
+   font-weight: bold;
+ }
+ion-button{
+    text-align:center;
+    span.suivant{
+        text-align:center;
+        width:100%;
+        font-weight: bold;
+        padding-left: 10%;
+      }
+    span.text{
+      text-align:center;
+      width:100%;
+      font-weight: bold;
+      padding-left: 20%;
+    }
+    span.icon{
+        width: 20%;
+    }
+  }
+  .btn-suivant {
+    span{
+        width: 10%;
+    }
+  }

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EnvService } from './env.service';
+import { HttpService } from './http.service';
+import { StorageService } from './storage.service';
 import { Client } from '../models/client.model';
 import { Observable } from 'rxjs';
+
 
 @Injectable({
     providedIn: 'root'
@@ -10,31 +12,31 @@ import { Observable } from 'rxjs';
 
 export class ClientService {
 
- constructor( private http: HttpClient,
-              private env: EnvService){}
- 
-     getClients(): Observable<Client[]> {
-      return this.http.get<Client[]>(`${this.env.API_URL}clients`);
-     }
+  entrepriseId : any;
 
-     getClientsByEntrepriseId(entrepriseId:number): Observable<Client[]> {
-        return this.http.get<Client[]>(`${this.env.API_URL}clients/entreprise/${entrepriseId}`);
-       }
+ constructor( private httpService: HttpService,
+              private storage: StorageService)
+              {
+                
+                this.storage.get('entreprise_id').then((val) => {
+                  this.entrepriseId = val;            
+                }); 
+              }
+          
+  get() {
+    return this.httpService.get('clients/entreprise/', this.entrepriseId);
+  }         
 
-     addClient(postData: any): Observable<Client> {
-      return this.http.post<Client>(`${this.env.API_URL}client`,postData);
-     }
+  checkClientByEmail(email: string) {
+    return this.httpService.get('clients/email/', email);
+  }
+  search(nom: string) {
+    return this.httpService.get('clients/nom/' + nom + '/', this.entrepriseId);
+  }
+  
+post(postData: any) {
+  return this.httpService.post('clients',postData);
+ }
 
-     updateClient(clientId:number, postData: any): Observable<Client> {
-      return this.http.put<Client>(
-          `${this.env.API_URL}client/${clientId}`,
-          postData
-          );
-     } 
-
-     deleteClient(clientId: number): Observable<Client> {
-        return this.http.delete<Client>(`${this.env.API_URL}client/${clientId}`);
-     }
 }
-
 

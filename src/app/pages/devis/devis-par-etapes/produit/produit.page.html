@@ -1,0 +1,99 @@
+  <ion-app>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button
+            text=""
+            icon="arrow-back-sharp" defaultHref="home/acceuil">
+        </ion-back-button>
+      </ion-buttons>
+      <ion-title>Création de Devis</ion-title>
+      <p slot="end">5 sur 6</p>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-content fullscreen="true" class="ion-padding">
+    <div class="title">
+      <p><span> 5 </span> Produit à utiliser</p>
+    </div>
+    <div fullscreen="true">
+
+     <div class="card-container" *ngFor="let produit of devis_produits" class="ion-card-container">
+      <ion-card>
+        <ion-card-header>
+          <p>{{ produit.lib }}</p>
+        </ion-card-header>
+        <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3"><img [src]="produit.img" alt=""></ion-col>
+             <ion-col size="9"><p><span>Nom Produit </span>{{ produit.lib }}</p></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3"><p><span>Prix : </span>{{ produit.prix_par_vente_unitaire }}</p></ion-col>
+            <ion-col size="3"><p><span>Qantité : </span>{{ produit.quantite }}</p></ion-col>
+            <ion-col size="6"><p><span>Designation : </span>{{ produit.reference }}</p></ion-col>
+           </ion-row>
+          <ion-row>
+            <ion-col size="6"><p><span>Description: </span><br>{{ produit.desc }}</p></ion-col>
+          
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button size="small" expand="block" (click)="supprimer(produit)">
+                supprimer
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button size="small" expand="block" (click)="modifier(produit)">
+                modifier
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        </ion-card-content>
+              </ion-card>
+     </div>
+     
+
+     <!--<ion-searchbar *ngIf="ajouter" debouce="2700" (ionChange)="_ionChange($event)"  placeholder="Rechercher votre produit"></ion-searchbar>
+  -->
+ <ion-grid  *ngIf="ajouter" class="searchbarContainer">
+       <ion-row>
+         <ion-col size="2">
+          <ion-icon size="large" name="search"></ion-icon>
+         </ion-col>
+         <ion-col size="10">
+          <ion-input [(ngModel)]="categorie" (ionChange)="_ionChange($event)"  placeholder="Rechercher votre produit"></ion-input>
+         </ion-col>
+       </ion-row>
+  </ion-grid>
+
+  <div class="produits-container">
+    <ion-list>
+      <ion-item *ngFor = "let produit of produits"
+                class = "produit" 
+                (click)="choisirProduit(produit)">
+       {{produit.lib}}
+      </ion-item>
+    </ion-list>
+  </div>
+
+     <ion-button  *ngIf="!ajouter" expand="block" (click)="_ajouter()" >
+      <ion-icon name="add-circle-sharp"></ion-icon>
+      Ajouter un autre produit
+    </ion-button>
+    </div>
+  </ion-content>
+
+<ion-footer class="ion-padding" translucent="true">
+  <ion-button class="btn-suivant" expand="block" (click)="submit()">
+    <span class="suivant">Suivant</span>
+    <span>
+      <ion-icon size="small" name="chevron-forward"></ion-icon>
+    </span>
+    </ion-button>
+</ion-footer>
+
+</ion-app>

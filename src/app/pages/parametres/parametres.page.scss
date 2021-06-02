@@ -1,0 +1,16 @@
+h1 {
+    margin: 2%;
+}
+ion-button{
+    margin-bottom: 3%;
+    padding-left: 16px;
+    padding-right: 16px;
+    span{
+      text-align:left;
+      width:60%;
+      font-weight: bold;
+    }
+    ion-icon {
+        padding-right: 10px;
+    }
+  }

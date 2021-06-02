@@ -1,0 +1,43 @@
+
+<div class="results-container">
+  <ion-searchbar (ionChange)="_ionChange($event)" placeholder="Recherche"></ion-searchbar>
+
+  
+<div class="client-container"  *ngFor = "let client of resultat">
+  <div class="item-container" >
+    <ion-item (click)="showClient()"
+               lines="none" 
+               detail="true">
+              
+      <ion-avatar slot="start">
+        <ion-icon size="large" name="person-circle-outline" ></ion-icon>
+     
+      </ion-avatar>
+
+      <ion-label>
+        <h3>Contact</h3>
+      </ion-label>
+      <ion-label>
+        <h3>{{ client.nom }} </h3>
+      </ion-label>
+    </ion-item>
+    </div>
+      <div class="item-container"   *ngFor = "let doc of client.documents" >
+        <ion-item (click)="showDocument()"
+                   lines="none" 
+                   detail="true">
+                  
+          <ion-avatar slot="start">
+            <ion-icon size="large" name="document-text-outline"></ion-icon>
+          </ion-avatar>
+    
+          <ion-label>
+            <h3>{{ doc.type }}</h3>
+          </ion-label>
+          <ion-label>
+            <h3>{{ client.nom }} </h3>
+          </ion-label>
+        </ion-item>
+        </div>
+</div>
+</div>

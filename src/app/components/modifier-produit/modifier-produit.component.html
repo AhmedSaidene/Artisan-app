@@ -1,0 +1,48 @@
+
+     <div class="card-container" class="ion-card-container">
+      <ion-card>
+        <ion-card-header>
+          <p>{{ produit.lib }}</p>
+        </ion-card-header>
+        <ion-card-content>
+        <ion-grid>
+          <ion-row>
+           <ion-col size="10"><p><span>Nom Produit </span>{{ updated.lib }}</p></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">
+              <p><span>Prix : </span></p>
+              <div class="input-container"><ion-input [(ngModel)]="updated.prix_par_vente_unitaire"></ion-input></div>
+            </ion-col>
+            <ion-col size="3">
+              <p><span>Qantité : </span> </p>
+              <div class="input-container"><ion-input [(ngModel)]="updated.quantite"></ion-input></div>
+           
+            </ion-col>
+            <ion-col size="6">
+              <p><span>Designation : </span></p>
+              <div class="input-container"><ion-input [(ngModel)]="updated.designation"></ion-input></div>
+           
+            </ion-col>
+           </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <p><span>Description: </span></p>
+              <br>
+              <div class="input-container"><ion-input [(ngModel)]="updated.description"></ion-input></div>
+            </ion-col>
+          
+          </ion-row>
+          <ion-row>
+            <ion-col>
+            </ion-col>
+            <ion-col>
+              <ion-button size="small" expand="block" (click)="dismiss()">
+                Valider
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        </ion-card-content>
+              </ion-card>
+     </div>

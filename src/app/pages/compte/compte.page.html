@@ -1,11 +1,56 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/home/acceuil" text=""></ion-back-button>
-      </ion-buttons>
-      <ion-title>About</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+      text="" 
+      icon="arrow-back-sharp" 
+      defaultHref="home/acceuil">
+  </ion-back-button>
+    </ion-buttons>
+    <ion-title>Modifier compte</ion-title>
+  </ion-toolbar>
+</ion-header>
 
+<ion-content translucent="true" class="ion-padding">
+
+  <div class="header">
+    <ion-icon name="person-outline"></ion-icon>
+    <h1>Mon compte</h1>
+  </div>
+
+
+     <form class="ion-padding" [formGroup]="form">
+      <ion-item lines="none" class="input-item">
+        <ion-input type="text" 
+                   formControlName="nom"
+                   placeholder="Nom"></ion-input>
+      </ion-item>
+       <ion-item lines="none" class="input-item">
+        <ion-input type="text" 
+                   formControlName="prenom" 
+                   placeholder="Prenom"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="input-item"> 
+        <ion-input type="email" 
+                   formControlName="email" 
+                   placeholder="Email"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="input-item">
+        <ion-input type="password" 
+                   formControlName="password" 
+                   placeholder="Mot de passe"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="input-item">
+        <ion-input type="text" 
+                   formControlName="tel" 
+                   placeholder="Numero de téléphone"></ion-input>
+      </ion-item>
+    </form>
   </ion-content>
+
+  <ion-footer class="ion-padding">
+    <ion-button [disabled]="form.invalid" class="btn-submit" expand="block" 
+    (click)="submit()">
+    Enregistrer Modification
+      </ion-button>
+  </ion-footer>

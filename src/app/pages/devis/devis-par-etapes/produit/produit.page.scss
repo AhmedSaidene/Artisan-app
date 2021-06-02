@@ -1,0 +1,83 @@
+ion-searchbar {
+    padding:0px;
+    --placeholder-color: rgb(90, 90, 90);
+    --border-radius: 5px;
+    --placeholder-font-weight : bold;
+}
+
+.searchbarContainer{
+  padding: 0px;
+  margin: 0px;
+  border-radius : 5px;
+  background-color: rgb(225, 222, 222);
+  ion-col {
+    padding: 0;
+  }
+  ion-input {
+  }
+}
+.produits-container {
+  ion-input {
+    background:rgb(228, 228, 228);
+    padding-bottom: 3px;
+    border-radius: 3px;
+  }
+}
+.popover-content {
+  left:5% !important;
+  width: 90% !important;
+}
+
+.ion-card-container {
+  padding-bottom: 20px;
+  ion-card {
+    padding : 0;
+    margin:0;
+    p {
+      padding: 3px;
+      margin: 0;
+    }
+    ion-card-header {
+      background:#28367a;
+      padding: 0px;
+      p {
+        color: white;
+      }
+    }
+   ion-card-content {
+    background:rgb(228, 228, 228);
+       p { color: grey;
+        font-size: 10px;
+        span {
+          font-weight: bold;
+         color:#28367a;
+       }
+     }
+     padding:0;
+    ion-grid {
+      padding:3%;
+      margin:0;
+      ion-col {
+        padding: 0px;
+      }}
+   }
+  }
+}
+
+
+ion-button{
+  text-align:center;
+  span.suivant{
+      text-align:center;
+      width:100%;
+      font-weight: bold;
+      padding-left: 10%;
+    }
+}
+.btn-suivant {
+  padding-left: 16px;
+  padding-right: 16px;
+  span{
+      width: 10%;
+  }
+}

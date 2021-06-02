@@ -7,10 +7,9 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule }    from '@angular/common/http';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
-
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { StorageService } from '../app/services/storage.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,11 +19,12 @@ import { StorageService } from '../app/services/storage.service';
     IonicModule.forRoot(), 
     AppRoutingModule, 
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    HttpClientModule , NativeStorage , StorageService
+    HttpClientModule ,StorageService,  ReactiveFormsModule
   ],
 bootstrap: [AppComponent],
 })

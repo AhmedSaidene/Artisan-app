@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+      text="" 
+      icon="arrow-back-sharp" 
+      defaultHref="home/acceuil">
+  </ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ role == 'update' ? 'Modifier' : 'Ajouter' }} compte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content translucent="true" class="ion-padding">
+
+  
+
+    <form class="ion-padding" [formGroup]="form">
+      <ion-item lines="none"class="ion-select-item" color="primary">
+        <ion-select  slot=""  formControlName ="role"  interface="popover" placeholder="Role">   
+          <ion-select-option class="select-interface-option" value="admin">Administrateur</ion-select-option>
+          <ion-select-option class="select-interface-option" value="comptable">Comptable</ion-select-option>
+          <ion-select-option class="select-interface-option" value="utilisateur">Utilisateur</ion-select-option>
+        </ion-select>   
+      </ion-item>
+      <ion-item lines="none" class="input-item">
+        <ion-input type="text" 
+                   formControlName="nom"
+                   placeholder="Nom"></ion-input>
+      </ion-item>
+       <ion-item lines="none" class="input-item">
+        <ion-input type="text" 
+                   formControlName="prenom" 
+                   placeholder="Prenom"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="input-item"> 
+        <ion-input type="email" 
+                   formControlName="email" 
+                   placeholder="Email"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="input-item">
+        <ion-input type="password" 
+                   formControlName="password" 
+                   placeholder="Mot de passe"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="input-item">
+        <ion-input type="text" 
+                   formControlName="tel" 
+                   placeholder="Numero de téléphone"></ion-input>
+      </ion-item>
+    </form>
+  </ion-content>
+
+  <!-- ce footer apparait que pour créer des nouveaux utilisateurs -->
+  <ion-footer class="ion-padding" *ngIf="role ==='add'">
+    <ion-button [disabled]="form.invalid" class="btn-submit" expand="block" 
+    (click)="submit()">
+    submit
+    </ion-button>
+  </ion-footer>
+
+   <!-- ce footer apparait que pour modifier ou supprimer des utilisateurs -->
+  <ion-footer class="ion-padding" *ngIf="role == 'update'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" class="left-col">
+    <ion-button class="" expand="block" 
+    (click)="delete()">Supprimer
+    </ion-button>
+        </ion-col>
+        <ion-col size="6" class="right-col">
+    <ion-button class="" expand="block" [disabled]="form.invalid"
+    (click)="submit()">Enregistrer Modification
+    </ion-button>           
+        </ion-col>
+      </ion-row>
+   </ion-grid>   
+  </ion-footer>
+
+       

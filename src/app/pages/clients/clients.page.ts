@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { LoadingController, ModalController } from '@ionic/angular';
+import { ClientService } from 'src/app/services/client.service';
 
 @Component({
   selector: 'app-clients',
@@ -8,12 +9,46 @@ import { Router } from '@angular/router';
 })
 export class ClientsPage implements OnInit {
 
-  constructor(private router: Router) { }
+  clients: any = [];
+  searchItem : any;
 
-  ngOnInit() {
+  constructor(
+    private clientService: ClientService,
+    private LoadingCtrl: LoadingController,
+    private modalCtrl: ModalController
+    ) {}
+    
+
+    async ngOnInit() {}
+   
+    _ionChange(event) {
+      console.log(event.detail.value);
+      const val = event.target.value;
+      this.searchItem = this.clients;
+      if( val && val.trim() != '') {
+        this.searchItem = this.searchItem.filter((item: any) => {
+          return (item.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
+      }
+
+    }
+     
+  async ionViewWillEnter() { 
+    const loading = await this.LoadingCtrl.create({message: 'Loading...'});
+    loading.present();
+
+    this.clients = [];
+     this.clientService.get()
+      .subscribe( data => { 
+        loading.dismiss();
+        console.log(data);
+        this.clients =  data['data'];
+        this.searchItem = this.clients;
+      });
   }
+    
 
-  navigateToHomePage() {
-   this.router.navigate(['/home/acceuil']);
+  openDetailModal(client) {
+    console.log(client);
   }
 }

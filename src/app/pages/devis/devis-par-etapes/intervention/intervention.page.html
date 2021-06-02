@@ -1,0 +1,57 @@
+<ion-app>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+          text=""
+          icon="arrow-back-sharp" defaultHref="home/acceuil">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Création de Devis</ion-title>
+    <p slot="end">2 sur 6</p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" class="ion-padding">
+  <div class="title">
+    <p><span> 2 </span> Intervention</p>
+  </div>
+  <div fullscreen="true" class="ion-padding">
+    <p>Dans quelle partie de la maison allez vous intervenir ?</p>
+    <br>
+   <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor = "let intervention of interventions">
+        <ion-button (click)="choice(intervention.id)">
+          {{ intervention.img }} <br>
+          {{ intervention.lib.fr }}
+        </ion-button>
+      </ion-col>
+      <ion-col size="4" *ngFor = "let intervention of added">
+        <ion-button (click)="choice(intervention.id)">
+          {{ intervention.img }} <br>
+          {{ intervention.lib.fr }}
+        </ion-button>
+      </ion-col>
+      <ion-col  *ngIf="!hideAdded" size="4">
+        <ion-button (click)="add()" >
+          <ion-icon name="add-circle-sharp"></ion-icon>
+          Autre
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+   
+  </div>
+
+</ion-content>
+<ion-footer class="ion-padding" translucent="true">
+  <ion-button class="btn-suivant" expand="block" (click)="submit()">
+  <span class="suivant">Suivant</span>
+  <span>
+    <ion-icon size="small" name="chevron-forward"></ion-icon>
+  </span>
+  </ion-button>
+</ion-footer>
+
+</ion-app>

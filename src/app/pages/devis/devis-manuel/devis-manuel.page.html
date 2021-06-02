@@ -1,0 +1,168 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+          text=""
+          icon="arrow-back-sharp" defaultHref="home/acceuil">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Devis Manuel</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content translucent="true" class="ion-padding">
+   
+    <ion-grid fixed>
+
+      <ion-row>
+
+        <ion-col size="5">
+          <ion-label>Default Note</ion-label>
+          <br><ion-note>Default Note</ion-note>
+          <br><ion-note>Default Note</ion-note>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button size="small" class="update-btn"
+          (click)="genrer()">
+          <ion-icon size="small" name="pencil-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="2">
+          <ion-button size="small" class="update-btn"
+          (click)="genrer()">
+          <ion-icon size="small" name="pencil-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="3" class="right-col">
+    <ion-label>Default Note</ion-label>         
+        </ion-col>
+
+      </ion-row>
+
+    
+      <ion-row>
+
+        <ion-col size="5">
+          <ion-label>Default Note</ion-label>
+          <br><ion-note>Default Note</ion-note>
+          <br><ion-note>Default Note</ion-note>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button size="small" class="update-btn"
+          (click)="genrer()">
+          <ion-icon size="small" name="pencil-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="2">
+          <ion-button size="small" class="update-btn">
+          <ion-icon size="small" name="pencil-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="3" class="right-col">
+      <ion-label>Default Note</ion-label>
+          <br><ion-note>Default Note</ion-note>
+          <br><ion-note>Default Note</ion-note>        
+        </ion-col>
+
+      </ion-row>
+
+      
+      <ion-row>
+        <ion-note>Default Note</ion-note> 
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="table">
+          <ion-row class="title">
+            <ion-col size="1"><p>Qté</p></ion-col>
+            <ion-col size="5"><p>Désignation</p></ion-col>
+            <ion-col size="2"><p>Prix Unit Ht</p></ion-col>
+            <ion-col size="3"><p>Prix Montant HT</p></ion-col>
+          </ion-row>
+          <ion-row class="data"><!-- *ng for -->
+            <ion-col size="1"><p>Qté</p></ion-col>
+            <ion-col size="5"><p>Désignation</p></ion-col>
+            <ion-col size="2"><p>Prix Unit Ht</p></ion-col>
+            <ion-col size="3"><p>Prix Montant HT</p></ion-col>
+            <ion-col size="1">
+              <ion-icon name="copy"></ion-icon>
+            </ion-col>
+          </ion-row>
+          <ion-row (click)="addProduct()" class="add">
+            <ion-col size="11" >
+              <ion-icon name="add-circle-sharp"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="table">
+        <ion-col size="2">
+        </ion-col>
+        <ion-col size="1">
+          <ion-row>
+          </ion-row>
+          <ion-row>
+          <ion-button size="small" class="update-btn">
+            <ion-icon size="small" name="pencil-outline"></ion-icon>
+          </ion-button>
+          </ion-row>
+          <ion-row>
+          </ion-row>
+        </ion-col>
+        <ion-col size="6" class="title">
+          <ion-row>
+            <p>Totlal HT</p>
+          </ion-row>
+          <ion-row>
+            <p>TVA ()</p>
+          </ion-row>
+          <ion-row>
+            <p>Totlal TTC</p>
+          </ion-row>
+        </ion-col>
+        <ion-col size="2" class="data">
+          <ion-row>
+            <p>Totlal HT</p>
+          </ion-row>
+          <ion-row>
+            <p>TVA ()</p>
+          </ion-row>
+          <ion-row>
+            <p>Totlal TTC</p>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="5">
+          <ion-label>Default Note</ion-label>
+          <br><ion-note>Default Note</ion-note>
+          <br><ion-note>Default Note</ion-note>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button size="small" class="update-btn">
+          <ion-icon size="small" name="pencil-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6" class="left-col">
+    <ion-button size="small" class="" expand="block" 
+    (click)="genrer()">Générer
+    </ion-button>
+        </ion-col>
+        <ion-col size="6" class="right-col">
+    <ion-button size="small" class="" expand="block" 
+    (click)="creerFacture()">Créer une facture
+    </ion-button>           
+        </ion-col>
+      </ion-row>
+ </ion-grid>      
+  </ion-content>
+  

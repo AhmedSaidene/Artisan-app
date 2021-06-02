@@ -1,32 +1,41 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EnvService } from './env.service';
+import { HttpService } from './http.service';
 import { Categorie } from '../models/categorie.model';
 import { Observable } from 'rxjs';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategorieService {
-  constructor( private http: HttpClient,
-    private env: EnvService){}
 
-getCategoriesByEntrepriseId(entrepriseId:number): Observable<Categorie[]> {
-return this.http.get<Categorie[]>(`${this.env.API_URL}categories/entreprise/${entrepriseId}`);
-}
+  entrepriseId : any;
+  categories : any;
 
-addCategorie(postData: any): Observable<Categorie> {
-return this.http.post<Categorie>(`${this.env.API_URL}categories`,postData);
-}
+  constructor( private httpService: HttpService,
+               private storage: StorageService)
+    {
+      this.storage.get('entreprise_id').then((val) => {
+        this.entrepriseId = val;            
+      });
+    }
 
-updateCategorie(CategorieId:number, postData: any): Observable<Categorie> {
-return this.http.put<Categorie>(
-`${this.env.API_URL}categories/${CategorieId}`,
-postData
-);
-} 
-
-deleteCategorie(CategorieId: number): Observable<Categorie> {
-return this.http.delete<Categorie>(`${this.env.API_URL}categories/${CategorieId}`);
-}
+    get() { 
+      this.storage.get('entreprise_id').then((val) => {
+        console.log(val);
+        this.entrepriseId = val;
+        console.log(this.entrepriseId);
+      });
+      return this.httpService.get('categories/entreprise/', this.entrepriseId);
+    }     
+    
+    search(lib: string) { 
+      this.storage.get('entreprise_id').then((val) => {
+        console.log(val);
+        this.entrepriseId = val;
+        console.log(this.entrepriseId);
+      });
+      return this.httpService.get('categories/produits/' + lib + '/', this.entrepriseId);
+    }  
 }

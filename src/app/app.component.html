@@ -6,11 +6,11 @@
 <ion-grid fixed>
    <ion-row>
      <ion-col size="3">
-         <img [src]="" />
+         <img [src]="user.logo" />
      </ion-col>
      <ion-col size="9">
-         <ion-card-title>Nom Entreprise</ion-card-title> 
-         <p>Nom Utilisateur</p>           
+         <h2>{{ user.entreprise }}</h2> 
+         <p>{{ user.userName }}</p>           
      </ion-col>
    </ion-row>
 </ion-grid>
@@ -23,38 +23,38 @@
       <ion-menu-toggle>
         <ion-button routerLink="/home/acceuil"  expand="block">
         <ion-icon name="home-outline"></ion-icon>
-        <b>Acceuil</b>
+        <span>Acceuil</span>
         </ion-button>
       </ion-menu-toggle>
 
       <ion-menu-toggle>
-        <ion-button routerLink="/home/clients/clients"  expand="block">
-        <ion-icon name="home-outline"></ion-icon>
-        <b>Clients</b>
+        <ion-button routerLink="/home/clients"  expand="block">
+          <ion-icon name="albums-outline"></ion-icon>
+        <span>Clients</span>
         </ion-button>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-button routerLink="/home/devis/devis"  expand="block">
-        <ion-icon name="home-outline"></ion-icon>
-        <b>Devis</b>
+          <ion-icon name="document-text-outline"></ion-icon>
+        <span>Devis</span>
         </ion-button>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-button routerLink="/home/factures/factures"  expand="block">
-        <ion-icon name="albums-outline"></ion-icon>
-        <b>Factures</b>
+          <ion-icon name="document-text-outline"></ion-icon>
+        <span>Factures</span>
         </ion-button>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-button routerLink="/home/categories/categories"  expand="block">
         <ion-icon name="home-outline"></ion-icon>
-        <b>Catégories</b>
+        <span>Catégories</span>
         </ion-button>
       </ion-menu-toggle>
       <ion-menu-toggle>
-        <ion-button routerLink="/home/paramètres"  expand="block">
-        <ion-icon name="cog-outline"></ion-icon>
-        <b>Settings</b>
+        <ion-button routerLink="/home/parametres"  expand="block">
+          <ion-icon name="settings-outline"></ion-icon>
+        <span>Settings</span>
         </ion-button>
       </ion-menu-toggle>
     </ion-content>
@@ -62,8 +62,10 @@
     <ion-footer class="ion-padding">
       <ion-menu-toggle>
         <ion-button (click)="logout()" expand="block">
-        <ion-icon name=""></ion-icon>
-        <b>Déconnection</b>
+          <ion-icon name="exit-outline"></ion-icon>
+          <span>
+            Déconnection
+          </span>
         </ion-button>
       </ion-menu-toggle>
       <br>

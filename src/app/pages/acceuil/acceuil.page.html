@@ -1,4 +1,4 @@
-<ion-header  class="ion-padding">
+<ion-header class="ion-padding">
   <ion-toolbar class="home-toolbar">
     <ion-buttons slot="start">
       <ion-menu-button menu="custom"></ion-menu-button>
@@ -21,22 +21,28 @@
   
 <ion-content class="ion-padding">
   <ion-toolbar>
-    <ion-searchbar placeholder="Recherche"></ion-searchbar>
+    <ion-searchbar (ionFocus)="search()"  placeholder="Recherche"></ion-searchbar>
   </ion-toolbar>
 
-    <ion-button size="large" class="custom" expand="block" routerLink="/home/clients/clients">
-      <ion-icon  name="star"></ion-icon>
-      Clients
-    </ion-button>
-    <br>
-    <ion-button size="large" class="custom" expand="block" routerLink="/home/devis/devis">
-      <ion-icon slot="start" name="star"></ion-icon>
-      <p>Devis</p>
+    <ion-button size="large" class="custom" expand="block" routerLink="/home/clients">
+      <ion-icon  name="albums-outline"></ion-icon>
+      <span>
+        <h1>Clients</h1>
+      </span>
     </ion-button>
     <br>
     <ion-button  size="large" class="custom" expand="block" routerLink="/home/factures/factures">
-      <ion-icon slot="start" name="star"></ion-icon>
-      Factures
+      <ion-icon slot="start" name="document-text-outline"></ion-icon>
+      <span>
+        <h1>Factures</h1>
+      </span>
+    </ion-button>
+    <br>
+    <ion-button size="large" class="custom" expand="block" routerLink="/home/devis/devis">
+      <ion-icon slot="start" name="document-text-outline"></ion-icon>
+      <span>
+        <h1>Devis</h1>
+      </span>
     </ion-button>
 
  

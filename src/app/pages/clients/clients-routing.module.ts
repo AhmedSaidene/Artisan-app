@@ -6,13 +6,7 @@ import { ClientsPage } from './clients.page';
 const routes: Routes = [
   {
     path: '',
-    component: ClientsPage,
-    children: [
-  {
-    path: 'clients',
-    loadChildren: () => import('../../pages/client-pages/clients/clients.module').then( m => m.ClientsPageModule)
-  }
-    ]
+    component: ClientsPage
   }
 ];
 

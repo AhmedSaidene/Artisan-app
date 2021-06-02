@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { EntrepriseService } from 'src/app/services/entreprise.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-inscription-entreprise',
@@ -25,17 +26,14 @@ export class InscriptionEntreprisePage implements OnInit {
   }
   
   constructor(private router: Router,
-    private userService: UserService,
-    private loadingCtrl: LoadingController,
-    private modalController: ModalController,
     private entrepriseService: EntrepriseService,
-    private alertService: AlertService) { }
+    private toastServices: ToastService) { }
 
   ngOnInit() {
    }
 
  submit() {
-    this.entrepriseService.addProduct(this.postData).subscribe(
+    this.entrepriseService.post(this.postData).subscribe(
 data => {
 console.log(data);
 },
@@ -44,7 +42,7 @@ console.log(error);
 },
 () => {
   this.router.navigate(['/configuration-devis']);
-  //console.log(this.postData);
+  console.log(this.postData);
 }
 );
 }

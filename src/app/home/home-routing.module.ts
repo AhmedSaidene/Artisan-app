@@ -29,9 +29,18 @@ const routes: Routes = [
         loadChildren: () => import('../pages/factures/factures.module').then(m => m.FacturesPageModule)
       },
       {
-        path: 'categories',
-        loadChildren: () => import('../pages/categories/categories.module').then( m => m.CategoriesPageModule)
+        path: 'parametres',
+        loadChildren: () => import('../pages/parametres/parametres.module').then( m => m.ParametresPageModule)
       },
+      {
+        path: 'categories',
+        loadChildren: () => import('../pages/parametres/categories/categories-routing.module').then( m => m.CategoriesPageRoutingModule)
+      },
+      {
+        path: '',
+        redirectTo: '/home/acceuil',
+        pathMatch: 'full' 
+      }
     ]
   
   }

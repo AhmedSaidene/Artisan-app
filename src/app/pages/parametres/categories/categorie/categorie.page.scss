@@ -1,0 +1,108 @@
+.ion-padding {
+    --padding-top: 0px;
+}
+.nbr {
+    padding-top: 10px;
+    margin: 0px;
+    padding-left: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    
+}
+ion-list-header {
+     padding: 0px;
+            padding:0px;
+            margin: 0px;
+            ion-row {
+                ion-col {
+                    padding-right: 0px;
+                    padding-left: 10px;
+                    margin: 0px;
+                    ion-label {
+                    }
+                }
+            }
+}
+ion-searchbar {
+    padding: 0px;
+    --border-radius: 5px;
+    --background: rgb(248, 248, 248);
+    --icon-color: #28367a;
+    --placeholder-color: grey;
+    --placeholder-opacity: 100%;
+    --placeholder-font-size: 1px;
+}
+.card-container {
+    padding-top: 10px;
+}
+ion-card{
+    box-shadow: none !important;
+    padding-left : 0px;
+    padding-right : 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin: 0px;
+    background-color: rgb(248, 248, 248);
+}
+ion-card-content {
+    padding : 0px;
+    margin: 2px;
+}
+ion-grid {
+    padding: 0px;
+}
+.data-container {
+    color: grey;
+}
+.title-container {
+    color: #28367a;
+}
+.data-container, .title-container {
+    padding:0px;
+    ion-row {
+        background-color: white;
+        margin: 1px;
+        padding:0px;
+        
+            p {
+                width: 100%;
+                font-size: 10px;
+                font-weight: bold;
+                padding-left: 5px;
+            }   
+    }
+}
+.img-container {
+    background-color: white;
+    padding:3px;
+    border-radius: 4px;
+}
+ion-list {
+    padding: 0px;
+}
+a {
+    color: #28367a;
+    font-size: 10px;
+    font-weight: bold;
+}
+.add-btn {
+    color: white;
+    background-color:#28367a;
+    border-radius: 5px;
+
+   ion-icon {
+    font-size: 15px;
+   }
+    p { 
+        font-size: 10px;
+        padding: 5px;
+    }
+}
+.update-btn {
+    --background: transparent;
+    color:#28367a;
+    font-weight: bold;
+    font-size:x-small;
+    margin: 0px;
+    padding: 0px;
+}

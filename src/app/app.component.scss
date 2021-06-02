@@ -1,6 +1,31 @@
-.row {
-    padding: 0%;
+ion-card {
+    border: 0 !important;
+    box-shadow: 0 !important;
+    border: none !important;
+    border-style: none !important;
+   
 }
-img {
-    height: 30px;
+ion-grid {
+    padding:0;
+    color: #28367a;
+h2 {
+    font-weight: bold;
 }
+p {
+
+}
+}
+ion-menu-toggle {
+ion-button{
+    margin-bottom: 7px;
+    span{
+      text-align:left;
+      width:60%;
+      font-weight: bold;
+    }
+    ion-icon {
+        padding-right: 10px;
+    }
+  }
+}
+  

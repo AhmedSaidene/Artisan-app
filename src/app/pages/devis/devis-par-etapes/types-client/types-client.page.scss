@@ -1,0 +1,30 @@
+
+div.ion-padding {
+    width: 100%;
+}
+
+ion-button{
+    text-align:center;
+    span.suivant{
+        text-align:center;
+        width:100%;
+        font-weight: bold;
+        padding-left: 10%;
+      }
+    span.text{
+      text-align:center;
+      width:100%;
+      font-weight: bold;
+      padding-left: 20%;
+    }
+    span.icon{
+        width: 20%;
+    }
+  }
+  .btn-suivant {
+    padding-left: 16px;
+    padding-right: 16px;
+    span{
+        width: 10%;
+    }
+  }

@@ -18,7 +18,7 @@ export class StorageService {
   }
 
   public set(key: string, value: any) {
-    return this._storage?.set(key, value);
+    return this._storage.set(key, value);
   }
   
   public get(key: string) {
@@ -27,6 +27,9 @@ export class StorageService {
 
   public remove(key: string) {
   return this._storage.remove(key);
+}
+public clear() {
+  return this._storage.clear();
 }
 
 }

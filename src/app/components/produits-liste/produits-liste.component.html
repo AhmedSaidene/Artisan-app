@@ -1,0 +1,7 @@
+<ion-list>
+  <ion-item *ngFor = "let produit of produits"
+            class = "produit" 
+            (click)="choisirProduit(produit)">
+   {{produit.lib}}
+  </ion-item>
+</ion-list>

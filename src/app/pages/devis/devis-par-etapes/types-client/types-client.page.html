@@ -1,0 +1,48 @@
+<ion-app>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+          text=""
+          icon="arrow-back-sharp" defaultHref="home/acceuil">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title slot="start">Création de Devis</ion-title>
+    <p slot="end">1 sur 6</p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" class="ion-padding">
+  <div class="title">
+    <p><span> 1 </span> Vos Informations</p>
+  </div>
+  <div fullscreen="true" class="ion-padding">
+    <p>votre client ?</p>
+    <br>
+    <ion-button (click)="choice('particulier')" expand="block">
+      <span class="text">Particulier</span>
+      <span class="icon">
+        <ion-icon size="large" *ngIf="typeClient === 'particulier'" name="checkmark-sharp"></ion-icon>
+      </span>
+    </ion-button>
+
+    <ion-button (click)="choice('société')" expand="block">
+      <span class="text"> Société</span>
+      <span class="icon">
+      <ion-icon size="large" *ngIf="typeClient === 'société'" name="checkmark-sharp"></ion-icon>
+    </span>
+    </ion-button>
+   
+  </div>
+
+</ion-content>
+
+<ion-footer class="ion-padding" translucent="true">
+  <ion-button class="btn-suivant" expand="block" (click)="submit()">
+  <span class="suivant">Suivant</span>
+  <span>
+    <ion-icon size="small" name="chevron-forward"></ion-icon>
+  </span>
+  </ion-button>
+</ion-footer>
+</ion-app>

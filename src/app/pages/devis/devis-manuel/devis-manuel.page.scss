@@ -1,0 +1,47 @@
+ion-grid {
+    padding: 0;
+    ion-col {
+        padding: 0;
+    }
+    .table {
+        ion-icon {
+            color: #28367a;
+        }
+        .title {
+            margin: 2px;
+           ion-col {
+            background-color: #28367a;
+            color: white;
+            font-weight: bold;
+           }
+        }
+        .data {
+            ion-col {
+            background-color: rgb(248, 248, 248);
+            color: grey;
+            }
+        }
+        .add {
+            ion-col {
+            background-color: rgb(248, 248, 248);
+            align: center;  
+            } 
+        }
+        p {
+            padding:0;
+            margin: 0;
+            font-size: 12px;
+        }
+    } 
+    .right-col {
+
+    }
+    ion-label {
+        font-size: 13px;
+        font-weight: bold;
+    }
+    ion-note {
+        font-size: 10px;
+        font-weight: bold;
+    }
+}

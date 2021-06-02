@@ -3,10 +3,13 @@
 
 }
 ion-toolbar {
+    
+    --border-style: none;
     img {
         height: 48px;
         inset: 0px;
         position:sticky;
+
     }
 }
 
@@ -16,10 +19,27 @@ ion-slide {
 
 ion-searchbar {
     padding: 0px;
+    --border-radius: 5px;
+    --background: rgb(248, 248, 248);
+    --icon-color: #28367a;
+    --placeholder-color: #28367a;
+    --placeholder-opacity: 100%;
+    --placeholder-font-size: 1px;
 }
 
-ion-button {
-    text-align: left;
-    ion-icon {
+ion-button{
+    span{
+      text-align:left;
+      width:40%;
+     h1 {
+         margin:0;
+        font-weight: bold;
+        font-size: 150%;
+     }
     }
-}
+    ion-icon {
+        padding-right: 0%;
+        padding-right: 10%;
+        font-size: 200%;
+    }
+  }

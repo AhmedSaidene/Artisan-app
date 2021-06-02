@@ -1,0 +1,121 @@
+<ion-app>
+  <ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+          text=""
+          icon="arrow-back-sharp" defaultHref="home/acceuil">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Création de Devis</ion-title>
+    <p slot="end">1 sur 6</p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" class="ion-padding">
+  <div class="title">
+    <p><span> 1 </span> Coordonnées de votre client</p>
+  </div>
+  <div class="ion-padding" fullscreen="true">
+
+<div class="">
+  <ion-button (click)="_clientExiste(false)" expand="block">
+    <span class="text">Ajouter un client</span>
+    <span class="icon">
+      <ion-icon size="large" *ngIf="clientExiste == false" name="checkmark-sharp"></ion-icon>
+    </span>
+  </ion-button>
+
+  <ion-button (click)="_clientExiste(true)" expand="block">
+    <span class="text">Selèctionner un client</span>
+    <span class="icon">
+    <ion-icon size="large" *ngIf="clientExiste == true" name="checkmark-sharp"></ion-icon>
+  </span>
+  </ion-button>
+</div>
+
+    <br>
+   <div class="form-container" *ngIf="clientExiste == false">
+    <form class="ion-padding" [formGroup]="form">
+      
+       <ion-item lines="none" class="ion-select-item" color="primary">
+        <ion-select  slot="" formControlName ="type" interface="popover" placeholder="Choisir le type de client">   
+          <ion-select-option value="particulier">Particulier</ion-select-option>
+          <ion-select-option value="entreprise">Entreprise</ion-select-option>  
+        </ion-select>
+      </ion-item>
+      <ion-item lines="none" class="input-item">
+        <ion-input type="text" 
+                  formControlName ="nom"
+                   placeholder="Nom client"></ion-input>
+      </ion-item>
+      
+      <ion-item lines="none" class="input-item"> 
+        <ion-input type="email" 
+                   formControlName="email" 
+                   placeholder="Email client"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="input-item">
+        <ion-input type="text" 
+                   formControlName="adr"
+                   placeholder="Adresse client"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="input-item">
+        <ion-input type="text" 
+                   formControlName="tel" 
+                   placeholder="Numero de téléphone client"></ion-input>
+      </ion-item>
+    </form>
+   </div>
+
+   <div class="liste-clients-container" *ngIf="clientExiste == true">
+
+    <ion-list>
+      <ion-list-header lines="full">
+        <ion-grid>
+         <ion-row>
+          <ion-col size="10">
+            <ion-searchbar debouce="700" 
+            (ionChange)="_ionChange($event)" 
+            placeholder="Recherche">
+           </ion-searchbar>
+           </ion-col>
+           <ion-col size="2">
+            <ion-icon name="filter"></ion-icon>
+          </ion-col>
+         </ion-row>
+        </ion-grid>
+      </ion-list-header>
+     <!-- (click) = openDetailModal(client)-->
+     <div  *ngFor = "let client of searchItem" class="item-container">
+    <ion-item (click)="choisirClient(client)"
+               lines="none" 
+               detail="true">
+              
+      <ion-avatar slot="start">
+        <img src="">
+      </ion-avatar>
+      <ion-label>
+        <h3>{{ client.nom }} </h3>
+      </ion-label>
+        <ion-button  (click) = openDetail(client) slot="end">
+          Voir details
+        </ion-button>
+    </ion-item>
+    </div>
+    </ion-list>
+   </div>
+  </div>
+
+</ion-content>
+
+<ion-footer class="ion-padding" translucent="true">
+  <ion-button [disabled]="(form.invalid && !clientExiste) || (clientExiste && clientId === undefined)" class="btn-suivant" expand="block" (click)="submit()">
+  <span class="suivant">Suivant</span>
+  <span>
+    <ion-icon size="small" name="chevron-forward"></ion-icon>
+  </span>
+  </ion-button>
+</ion-footer>
+
+</ion-app>
