@@ -2,48 +2,53 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InterventionService } from 'src/app/services/intervention.service';
 import { ToastService } from 'src/app/services/toast.service';
-
 @Component({
   selector: 'app-intervention',
   templateUrl: './intervention.page.html',
   styleUrls: ['./intervention.page.scss'],
 })
 export class InterventionPage implements OnInit {
-
-  interventions : any = [];
+//resultats favories
+  favourite : any = [];
+  //intervention ajouté nom favoris
  added : any []
- hideAdded = false
+ //a variable to hide add btn if user retreave intevention
+ hideAddBtn = false
+ //resultat
   devis = {
     client : {},
-    intervention : null
+    interventions : []
   }
-
+  //choix
+  intervention = {
+id : {},
+index : {}
+  }
   constructor(private router: Router,
               private toastService: ToastService,
               private interventionService: InterventionService) 
               { }
-
   ngOnInit() {
     console.log(history.state);
-    this.devis.client = history.state; 
+    this.devis.client = history.state.client; 
+    this.devis.interventions = history.state.interventions; 
     console.log(this.devis);
   }
   async ionViewWillEnter() { 
-    this.interventions = [];
-
+    this.favourite = [];
     this.interventionService.getFavorite()
     .subscribe( data => {
       console.log(data);
-      this.interventions =  data['data'];
+      this.favourite =  data['data'];
     });
-   
     }
   choice(id: number) {
-    this.devis.intervention = id;
-    console.log(this.devis);
+    this.intervention.id = id;
+    console.log(this.devis); 
+    console.log(this.intervention); 
   }
   add() {
-    this.hideAdded = true
+    this.hideAddBtn = true
     this.interventionService.add()
     .subscribe( data => {
       console.log(data);
@@ -51,11 +56,18 @@ export class InterventionPage implements OnInit {
     });
   }
   submit() {
-    if (this.devis.intervention == null){
+    console.log(this.devis); 
+    console.log(this.intervention); 
+    if (this.intervention.id == null){
       this.toastService.presentToast('choisir une intervention !');
     } else {
+      this.intervention.index = this.devis.interventions.length
+      console.log(this.intervention); 
+    this.devis.interventions.push(this.intervention)
     console.log(this.devis);
-    this.router.navigateByUrl('/home/devis/devis-par-etapes/prestation', { state: { devis : this.devis }});
+    console.log('after pushing intervention' + this.devis.interventions);
+    this.router.navigateByUrl('/home/devis/devis-par-etapes/prestation', 
+    { state:  this.devis });
     }
   }
 

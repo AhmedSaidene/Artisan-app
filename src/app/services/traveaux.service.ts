@@ -19,4 +19,14 @@ export class TraveauxService {
   get() {
     return this.httpService.get('traveaux/entreprise/', this.entrepriseId);
   } 
+  
+  getFavorite() {
+    return this.httpService.get('traveaux/entreprise/favourite/', this.entrepriseId);
+  } 
+  add() {
+    return this.httpService.get('traveaux/entreprise/add/', this.entrepriseId);
+  } 
+  delete(id: any) {
+    return this.httpService.delete('traveaux/', id);
+  }
 }

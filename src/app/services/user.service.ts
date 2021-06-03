@@ -9,7 +9,8 @@ export class UserService {
   userId : any;
   entrepriseId : any;
   constructor(private storage: Storage,
-              private httpService: HttpService) {        
+              private httpService: HttpService) {
+                        
   this.storage.get('entreprise_id').then((val) => {
     
     console.log(val)

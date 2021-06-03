@@ -2,59 +2,59 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast.service';
 import { TraveauxService } from 'src/app/services/traveaux.service';
-
 @Component({
   selector: 'app-traveaux',
   templateUrl: './traveaux.page.html',
   styleUrls: ['./traveaux.page.scss'],
 })
-
 export class TraveauxPage implements OnInit {
-
-  traveaux : any = [];
- 
+//resultats favories
+favourite : any = [];
+//intervention ajouté nom favoris
+added : any []
+//a variable to hide add btn if user retreave intevention
+hideAddBtn = false
+//resultat
   devis = {
     client : {},
-    intervention : {},
-    prestation : {},
-    traveaux : null
+    interventions : [],
   }
   constructor(private router: Router,
-    private toastService: ToastService,
-    private traveauxService: TraveauxService) { }
-    
-
-
+             private toastService: ToastService,
+             private traveauxService: TraveauxService) { }
   ngOnInit() {
-    console.log(history.state.devis);
-    this.devis.client = history.state.devis.client; 
-    this.devis.intervention = history.state.devis.intervention; 
-    this.devis.prestation = history.state.devis.prestation; 
-    
-    console.log(history.state.devis);
+    console.log(history.state);
+    this.devis.client = history.state.client;
+   this.devis.interventions = history.state.interventions; 
+   console.log(this.devis);
   }
   async ionViewWillEnter() { 
-    this.traveaux = [];
-
+    this.favourite = [];
     this.traveauxService.get()
     .subscribe( data => {
       console.log(data);
-      this.traveaux =  data['data'];
+      this.favourite =  data['data'];
     });
-   
     }
-  choice(id: number) {
-    this.devis.traveaux = id;
-    console.log(this.devis.traveaux);
-  }
-
+    id = {}
+    choice(id: number) {
+      this.id = id
+      console.log(this.id); 
+    }
+    add() {
+      this.hideAddBtn = true
+      this.traveauxService.add()
+      .subscribe( data => {
+        console.log(data);
+        this.added =  data['data'];
+      });
+    }
   submit() {
-    if(this.devis.traveaux == null) {
-      this.toastService.presentToast('Choisir un type des traveaux');
+    if(this.id == null) {
+      this.toastService.presentToast('Choisir un type de traveaux');
     } else {
-     console.log(this.devis);
-      this.router.navigateByUrl('/home/devis/devis-par-etapes/produit', { state: { devis : this.devis }});
+      this.devis.interventions[history.state.interventions.length - 1]['traveaux'] = this.id
+      this.router.navigateByUrl('/home/devis/devis-par-etapes/produit', { state: this.devis });
     } 
   }
-  
 }

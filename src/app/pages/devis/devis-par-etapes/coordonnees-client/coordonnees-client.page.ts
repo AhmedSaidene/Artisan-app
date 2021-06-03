@@ -137,10 +137,10 @@ _ionChange(event) {
     if(this.clientExiste && this.clientId !== undefined ){
      // console.log(this.clientExiste + ' ' + this.clientId)
       this.router.navigateByUrl('/home/devis/devis-par-etapes/intervention', { state:  {client : {
-                                                                                                           existe : this.clientExiste, 
-                                                                                                           client :  this.clientId
-                                                                                                           }, 
-                                                                                                     interventions : []
+                                                                                                  existe : this.clientExiste, 
+                                                                                                  client :  this.clientId
+                                                                                                   }, 
+                                                                                         interventions : []
                                                                                                   }});
     } else {
     if( !this.clientExiste && this.isValidate() ) {
@@ -156,7 +156,7 @@ _ionChange(event) {
                                                                                                    existe : this.clientExiste, 
                                                                                                    client : this.form.value 
                                                                                                   }, 
-                                                                                                  interventions : []
+                                                                                      interventions : []
                                                                                                 }});
         }
       })

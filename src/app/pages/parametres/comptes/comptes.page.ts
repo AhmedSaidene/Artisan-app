@@ -17,7 +17,9 @@ export class ComptesPage implements OnInit {
   constructor(
     private userService: UserService,
     private LoadingCtrl: LoadingController,
-    private router: Router ) {}
+    private router: Router ) {
+      
+    }
     
   async ionViewWillEnter() { 
     const loading = await this.LoadingCtrl.create({message: 'Loading...'});
