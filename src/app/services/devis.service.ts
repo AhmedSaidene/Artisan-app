@@ -171,6 +171,44 @@ if(typeof(c.client) === 'number') {
 }
 
     
-//});
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
      }
+
+     create(postData: any) {
+       //loader 
+//la création du client pour récupérer son id
+if(postData['client']['existe']) {
+  this.httpService.post('documents', postData['document']).subscribe((devis) => {
+  if(devis['success']) {
+    console.log(devis)
+    postData['interventions'].forEach(intervention => {
+      intervention['documentId'] = devis['id']
+      this.groupeLignesService.post(intervention).subscribe((grp) => {
+        console.log(grp)
+        if(grp['success']) {
+          intervention['produits'].forEach(produit => {
+            produit['groupe_ligne_doc_id'] = grp['id']
+        this.devisHasProduitsService.post(produit).subscribe((ligne) => {
+          console.log(ligne)
+        })
+      });
+     
+        } else {
+         this.toastService.presentToast("Echec d'envoie")
+        }
+      })
+   
+    });
+ 
+  } else {
+    this.toastService.presentToast("Echec d'envoie")
+  } });
+}
+
+
+
+
+      
+  //});
+       }
 }

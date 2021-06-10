@@ -15,12 +15,10 @@ export class ComptePage implements OnInit {
 
   role : string;  
   form: FormGroup;
-  userDetailsForm;
 
   constructor(private router: Router,
               private userService: UserService,
               private toastController: ToastService,
-              private toastService: ToastService,
              private loadingCtrl: LoadingController) {  
 
 console.log(this.router.getCurrentNavigation().extras);
@@ -51,6 +49,7 @@ initAddUserForm() {
      nom: new FormControl(null, [Validators.required]),
     prenom:  new FormControl(null, [Validators.required]),
     role: new FormControl(null, [Validators.required]),
+    // langue: new FormControl(null, [Validators.required]),
     email: new FormControl(null, Validators.compose([
       Validators.required,
       Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
@@ -82,6 +81,7 @@ if(res['success'] == true) {
 }
     })
   } else {
+    //il faux tester et ajouter la langue
     this.userService.post(this.form.value).subscribe((res) => {
       console.log(res)
       loading.dismiss();

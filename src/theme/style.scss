@@ -107,3 +107,48 @@ ion-searchbar {
   padding: 0px;
   --border-radius: 5px;
 }
+.active-link {
+  --background: #e4261b !important;
+}
+
+.side-menu-item {
+  
+}
+
+//******************************
+.popover-content{
+  width: 90%!important;
+  left: 5%!important;
+}
+.popover_setting .popover-content {
+  width: 90%!important;
+  left: 5%!important;
+
+}
+.popover-content .popover-content {
+  .popover-container {
+  form {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+  ion-button {
+    font-weight: bold;
+    p {
+      padding-left: 20%;
+      margin-right: 20%;
+    }
+  }
+  ion-item {
+    margin-bottom: 5%;
+    margin-top: 3%;
+  }
+ion-label {
+  color : #28367a;
+  font-weight: bold;
+  margin-bottom: 5%;
+}
+  }
+}
+}

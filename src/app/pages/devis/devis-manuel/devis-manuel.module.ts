@@ -8,6 +8,12 @@ import { DevisManuelPageRoutingModule } from './devis-manuel-routing.module';
 
 import { DevisManuelPage } from './devis-manuel.page';
 
+import { ClientComponent } from '../../../components/client/client.component';
+import { TotalComponent } from '../../../components/total/total.component';
+import { InfoBancairesComponent } from '../../../components/info-bancaires/info-bancaires.component';
+import { NomDevisComponent } from '../../../components/nom-devis/nom-devis.component';
+ 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +21,12 @@ import { DevisManuelPage } from './devis-manuel.page';
     IonicModule,
     DevisManuelPageRoutingModule
   ],
-  declarations: [DevisManuelPage]
+  declarations: [
+    DevisManuelPage, 
+    ClientComponent, 
+    TotalComponent, 
+    InfoBancairesComponent, 
+    NomDevisComponent
+  ]
 })
 export class DevisManuelPageModule {}

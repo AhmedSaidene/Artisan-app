@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
-import { Produit } from '../models/produit.model';
-import { Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 
 @Injectable({
@@ -11,9 +9,14 @@ export class ProduitService {
 
   categorieId : any;
   produits : any;
+  entrepriseId;
 
   constructor( private httpService: HttpService,
-               private storage: StorageService){}
+               private storage: StorageService){
+                this.storage.get('entreprise_id').then((val) => {
+                  this.entrepriseId = val;            
+                }); 
+               }
 
 get(idCategorie: string) {
     console.log("id " + idCategorie);
@@ -25,27 +28,12 @@ update(produitId: number, postData: any) {
   return this.httpService.update('produits/', produitId, postData);
 }
 
+
+post(postData: any) {
+  return this.httpService.post('produits/', postData);
+}
+
 delete(produitId: number) {
   return this.httpService.delete('produits/', produitId);
 }
- 
-/*
-getProduittsByCategorieId(CategorieId:number): Observable<Produit[]> {
-return this.http.get<Produit[]>(`${this.env.API_URL}produits/categorie/${CategorieId}`);
-}
-
-addProduit(postData: any): Observable<Produit> {
-return this.http.post<Produit>(`${this.env.API_URL}produits`,postData);
-}
-
-updateProduit(produitId:number, postData: any): Observable<Produit> {
-return this.http.put<Produit>(
-`${this.env.API_URL}produits/${produitId}`,
-postData
-);
-} 
-
-deleteProduit(produitId: number): Observable<Produit> {
-return this.http.delete<Produit>(`${this.env.API_URL}produits/${produitId}`);
-}*/
 }

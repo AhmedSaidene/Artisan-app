@@ -16,42 +16,37 @@
   <div class="title">
     <p><span> 2 </span> Coordonnées de votre entreprise</p>
   </div>
-  <form class="ion-padding">
+  <form class="ion-padding" [formGroup]="form">
     <ion-item lines="none" class="input-item">
-      <ion-input name="lib" 
+      <ion-input formControlName="lib"
                  type="text"
-                 [(ngModel)] = "postData.lib"
                  placeholder="Nom de l'entreprise"></ion-input>
     </ion-item>
     <ion-item lines="none" class="input-item">
-      <ion-input name="email" 
-                 type="email"
-                 [(ngModel)] = "postData.email" 
+      <ion-input formControlName="email" 
+                 type="email" 
                  placeholder="Email de l'entreprise"></ion-input>
     </ion-item>
     <ion-item lines="none" class="input-item"> 
-      <ion-input name="adresse" 
-                 type="text"
-                 [(ngModel)] = "postData.adresse"  
+      <ion-input formControlName="adresse" 
+                 type="text"  
                  placeholder="Adresse enreprise"></ion-input>
     </ion-item>
     <ion-item lines="none" class="input-item">
-      <ion-input name="tel" 
-                 type="text"
-                 [(ngModel)] = "postData.tel"  
+      <ion-input formControlName="tel" 
+                 type="text"  
                  placeholder="Numero téléphone Entreprise"></ion-input>
     </ion-item>
     <ion-item lines="none" class="input-item">
-      <ion-input name="logo" 
-                 type="text"
-                 [(ngModel)] = "postData.email"  
+      <ion-input formControlName="logo" 
+                 type="text" 
                  placeholder="Ajouter votre logo"></ion-input>
     </ion-item>
   </form>
 </ion-content>
 
 <ion-footer class="ion-padding" translucent="true">
-  <ion-button class="btn-suivant" expand="block" 
+  <ion-button  [disabled]="form.invalid" class="btn-suivant" expand="block" 
   (click)="submit()">
   <span>Suivant</span>
   <ion-icon size="small" name="chevron-forward"></ion-icon>

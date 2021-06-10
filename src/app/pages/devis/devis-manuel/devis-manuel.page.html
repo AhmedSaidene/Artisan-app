@@ -11,32 +11,29 @@
 </ion-header>
 
   <ion-content translucent="true" class="ion-padding">
-   
-    <ion-grid fixed>
-
+    <ion-grid>
       <ion-row>
 
-        <ion-col size="5">
-          <ion-label>Default Note</ion-label>
-          <br><ion-note>Default Note</ion-note>
-          <br><ion-note>Default Note</ion-note>
+        <ion-col size="5" class="entreprise">
+          <ion-label>{{entreprise.lib}}</ion-label>
+          <br><ion-note><span>Adresse : </span>{{entreprise.adresse}}</ion-note>
+          <br><ion-note>entreprise.cp</ion-note>
+        </ion-col>
+        <ion-col size="2" >
+          <ion-button size="small" class="update-btn"
+          (click)="addEntreprise()">
+          <ion-icon size="small" name="pencil-outline"></ion-icon>
+          </ion-button>
         </ion-col>
         <ion-col size="2">
           <ion-button size="small" class="update-btn"
-          (click)="genrer()">
+          (click)="editNom()">
           <ion-icon size="small" name="pencil-outline"></ion-icon>
           </ion-button>
         </ion-col>
 
-        <ion-col size="2">
-          <ion-button size="small" class="update-btn"
-          (click)="genrer()">
-          <ion-icon size="small" name="pencil-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-
-        <ion-col size="3" class="right-col">
-    <ion-label>Default Note</ion-label>         
+        <ion-col size="3" class="devis">
+    <ion-label>{{ document.lib }}</ion-label>         
         </ion-col>
 
       </ion-row>
@@ -45,76 +42,119 @@
       <ion-row>
 
         <ion-col size="5">
-          <ion-label>Default Note</ion-label>
-          <br><ion-note>Default Note</ion-note>
-          <br><ion-note>Default Note</ion-note>
+          <ion-note><span>Siret : </span></ion-note>
+          <br><ion-note><span>N°TVA : </span></ion-note>
+          <br><ion-note><span>Tél : </span>{{ entreprise.tel }}</ion-note>
         </ion-col>
         <ion-col size="2">
           <ion-button size="small" class="update-btn"
-          (click)="genrer()">
+          (click)="AddInfo()">
           <ion-icon size="small" name="pencil-outline"></ion-icon>
           </ion-button>
         </ion-col>
 
         <ion-col size="2">
-          <ion-button size="small" class="update-btn">
+          <ion-button size="small" class="update-btn" (click)="editClient()">
           <ion-icon size="small" name="pencil-outline"></ion-icon>
           </ion-button>
         </ion-col>
 
         <ion-col size="3" class="right-col">
-      <ion-label>Default Note</ion-label>
-          <br><ion-note>Default Note</ion-note>
-          <br><ion-note>Default Note</ion-note>        
+      <ion-label>{{client.nom}} </ion-label>
+          <br><ion-note>{{client.adresse}}</ion-note>
+          <br><ion-note>{{client.cp}}</ion-note>   
+          <br><ion-note><span>Tél : </span>{{client.tel}}</ion-note>     
         </ion-col>
 
       </ion-row>
 
       
-      <ion-row>
-        <ion-note>Default Note</ion-note> 
+      <ion-row class="date">
+        <br>
+        <ion-note><span>Date de devis : </span>{{date}}</ion-note> 
+        <br>
       </ion-row>
 
-      <ion-row>
-        <ion-col class="table">
-          <ion-row class="title">
-            <ion-col size="1"><p>Qté</p></ion-col>
-            <ion-col size="5"><p>Désignation</p></ion-col>
-            <ion-col size="2"><p>Prix Unit Ht</p></ion-col>
-            <ion-col size="3"><p>Prix Montant HT</p></ion-col>
-          </ion-row>
-          <ion-row class="data"><!-- *ng for -->
-            <ion-col size="1"><p>Qté</p></ion-col>
-            <ion-col size="5"><p>Désignation</p></ion-col>
-            <ion-col size="2"><p>Prix Unit Ht</p></ion-col>
-            <ion-col size="3"><p>Prix Montant HT</p></ion-col>
-            <ion-col size="1">
-              <ion-icon name="copy"></ion-icon>
-            </ion-col>
-          </ion-row>
-          <ion-row (click)="addProduct()" class="add">
-            <ion-col size="11" >
-              <ion-icon name="add-circle-sharp"></ion-icon>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-      </ion-row>
+      <ion-row class="intervention"><!-- *ngFor="" -->
+        <ion-col>
+        <ion-row class="header">
+       <ion-col size="8">
+        <ion-row>
+          <ion-label>
+            <span>Intervention : </span> Intervention
+          </ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label>
+            <span>Type de préstation : </span> Prestation
+          </ion-label>
+        </ion-row> 
+         <ion-row>
+          <ion-label>
+            <span>Type de traveaux : </span> traveaux
+          </ion-label>
+         </ion-row> 
+       </ion-col>
 
-      <ion-row class="table">
-        <ion-col size="2">
-        </ion-col>
-        <ion-col size="1">
-          <ion-row>
-          </ion-row>
-          <ion-row>
-          <ion-button size="small" class="update-btn">
-            <ion-icon size="small" name="pencil-outline"></ion-icon>
+         <ion-col size="2">
+          <ion-button size="small" class="update-btn" (click)="editIntervention()">
+          <ion-icon size="small" name="pencil-outline"></ion-icon>
           </ion-button>
+        </ion-col>
+            <ion-col size="2"  (click)="deleteIntervention()">
+              <ion-icon size="large" name="close-circle-sharp"></ion-icon>
+        </ion-col>
+        <br>
+        </ion-row>
+        <ion-row>
+          <ion-col class="table">
+            <ion-row class="title">
+              <ion-col size="1"><p>Qté</p></ion-col>
+              <ion-col size="5"><p>Désignation</p></ion-col>
+              <ion-col size="2"><p>Prix Unit Ht</p></ion-col>
+              <ion-col size="3"><p>Prix Montant HT</p></ion-col>
+            </ion-row>
+  
+            <ion-row class="data"><!-- *ng for -->
+              <ion-col size="1"><p>Qté</p></ion-col>
+              <ion-col size="5"><p>Désignation</p></ion-col>
+              <ion-col size="2"><p>Prix Unit Ht</p></ion-col>
+              <ion-col size="3"><p>Prix Montant HT</p></ion-col>
+              <ion-col size="1">
+                <ion-icon name="copy"></ion-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row (click)="addProduct()" class="add">
+              <ion-col size="11" >
+                <ion-icon size="large" name="add-circle-sharp"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+</ion-col>
+      </ion-row>
+
+      <ion-row (click)="addIntervention()" class="add">
+        <ion-col size="11" >
+          <ion-icon class="add-intervention" size="large" name="add-circle-sharp"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="calcul-table">
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="2">
+          <ion-row>
+          </ion-row>
+          <ion-row>
+            <ion-button size="small" class="update-btn" (click)="editTotal()">
+              <ion-icon size="small" name="pencil-outline"></ion-icon>
+              </ion-button>
           </ion-row>
           <ion-row>
           </ion-row>
         </ion-col>
-        <ion-col size="6" class="title">
+        <ion-col size="4" class="title">
           <ion-row>
             <p>Totlal HT</p>
           </ion-row>
@@ -125,7 +165,7 @@
             <p>Totlal TTC</p>
           </ion-row>
         </ion-col>
-        <ion-col size="2" class="data">
+        <ion-col size="4" class="data">
           <ion-row>
             <p>Totlal HT</p>
           </ion-row>
@@ -136,29 +176,33 @@
             <p>Totlal TTC</p>
           </ion-row>
         </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-note>Condition de paiement</ion-note>
       </ion-row>
 
       <ion-row>
         <ion-col size="5">
-          <ion-label>Default Note</ion-label>
-          <br><ion-note>Default Note</ion-note>
-          <br><ion-note>Default Note</ion-note>
+          <ion-note>Info Bancaire</ion-note>
+          <br><ion-note>IBAN : {{ document.IBAN ? document.IBAN : entreprise.IBAN }}</ion-note>
+          <br><ion-note>SWIFT/BIC : {{ document.SWIFT_BIC }}</ion-note>
         </ion-col>
         <ion-col size="2">
-          <ion-button size="small" class="update-btn">
-          <ion-icon size="small" name="pencil-outline"></ion-icon>
+          <ion-button size="small" class="update-btn" (click)="editInfoBancaires()">
+            <ion-icon size="small" name="pencil-outline"></ion-icon>
           </ion-button>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="6" class="left-col">
-    <ion-button size="small" class="" expand="block" 
+    <ion-button  class="" expand="block" 
     (click)="genrer()">Générer
     </ion-button>
         </ion-col>
         <ion-col size="6" class="right-col">
-    <ion-button size="small" class="" expand="block" 
+    <ion-button class="" expand="block" 
     (click)="creerFacture()">Créer une facture
     </ion-button>           
         </ion-col>

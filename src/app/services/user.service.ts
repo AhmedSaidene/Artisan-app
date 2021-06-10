@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Storage } from '@ionic/storage-angular';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ export class UserService {
   userId : any;
   entrepriseId : any;
   constructor(private storage: Storage,
-              private httpService: HttpService) {
+              private httpService: HttpService,
+              private http: HttpClient) {
                         
   this.storage.get('entreprise_id').then((val) => {
     
@@ -27,8 +29,11 @@ export class UserService {
 getUserInfo() {
   return this.httpService.get('user/', this.userId);
 }
+getUserProfile() {
+  return this.httpService.get('user/profile/', this.userId);
+}
 checkClientByEmail(email: string) {
-  return this.httpService.get('clients/user/', email);
+  return this.http.get('http://localhost:8000/api/user/email/'+ email);
 }
 get() {
   return this.httpService.get('user/entreprise/', this.entrepriseId);
@@ -36,11 +41,9 @@ get() {
 post(postData: any) {
   return this.httpService.post('user',postData);
  }
-
 update(postData: any) {
   return this.httpService.update('user/', this.userId, postData);
 }
-
 delete() {
   return this.httpService.delete('user/', this.userId);
 }

@@ -1,62 +1,62 @@
 <ion-app>
   <ion-menu side="start" menuId="custom" contentId="main" class="my-custom-menu">
     <ion-header>
-        <ion-card>
-<ion-card-content>
-<ion-grid fixed>
-   <ion-row>
-     <ion-col size="3">
-         <img [src]="user.logo" />
-     </ion-col>
-     <ion-col size="9">
-         <h2>{{ user.entreprise }}</h2> 
-         <p>{{ user.userName }}</p>           
-     </ion-col>
-   </ion-row>
-</ion-grid>
-</ion-card-content>
-</ion-card>
+
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="3">
+              <img [src]="user.logo" />
+          </ion-col>
+          <ion-col size="9">
+              <h2>{{ user.entreprise }}</h2> 
+              <ion-info>{{ user.userName }}</ion-info>           
+          </ion-col>
+        </ion-row>
+     </ion-grid>
+     
     </ion-header>
 
     <ion-content class="ion-padding" >
-      
+      <ion-list>
+     
       <ion-menu-toggle>
-        <ion-button routerLink="/home/acceuil"  expand="block">
+        <ion-item class="side-menu-item" routerLinkActive="active-link" routerLink="/home/acceuil"  expand="block">
         <ion-icon name="home-outline"></ion-icon>
         <span>Acceuil</span>
-        </ion-button>
+        </ion-item>
       </ion-menu-toggle>
 
       <ion-menu-toggle>
-        <ion-button routerLink="/home/clients"  expand="block">
+        <ion-item class="side-menu-item" routerLinkActive="active-link" routerLink="/home/clients"  expand="block">
           <ion-icon name="albums-outline"></ion-icon>
         <span>Clients</span>
-        </ion-button>
+        </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
-        <ion-button routerLink="/home/devis/devis"  expand="block">
+        <ion-item class="side-menu-item" routerLinkActive="active-link" routerLink="/home/devis/devis"  expand="block">
           <ion-icon name="document-text-outline"></ion-icon>
         <span>Devis</span>
-        </ion-button>
+        </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
-        <ion-button routerLink="/home/factures/factures"  expand="block">
+        <ion-item class="side-menu-item" routerLinkActive="active-link" routerLink="/home/factures/factures"  expand="block">
           <ion-icon name="document-text-outline"></ion-icon>
         <span>Factures</span>
-        </ion-button>
+        </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
-        <ion-button routerLink="/home/categories/categories"  expand="block">
+        <ion-item class="side-menu-item" routerLinkActive="active-link" routerLink="/home/categories/categories"  expand="block">
         <ion-icon name="home-outline"></ion-icon>
         <span>Catégories</span>
-        </ion-button>
+        </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-button routerLink="/home/parametres"  expand="block">
+      <ion-menu-toggle *ngIf="user.role == 'admin'">
+        <ion-item class="side-menu-item" routerLinkActive="active-link" routerLink="/home/parametres"  expand="block">
           <ion-icon name="settings-outline"></ion-icon>
         <span>Settings</span>
-        </ion-button>
+        </ion-item>
       </ion-menu-toggle>
+    </ion-list>
     </ion-content>
 
     <ion-footer class="ion-padding">

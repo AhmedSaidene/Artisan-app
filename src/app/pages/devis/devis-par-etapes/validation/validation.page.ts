@@ -10,26 +10,35 @@ import { DevisService } from 'src/app/services/devis.service';
 })
 export class ValidationPage implements OnInit {
 
-  devis = {}
+  devis = {
+    client : {},
+    interventions : null,
+  }
+  intervention : any
 
   constructor(private router: Router,
               private devisService: DevisService,
               private LoadingCtrl: LoadingController) { }
 
   ngOnInit() {
-    console.log(history.state.devis);
-    this.devis = history.state.devis; 
-    console.log(this.devis);
+    console.log(history.state);
+    this.devis.client = history.state.client;
+   this.devis.interventions = history.state.interventions; 
+   this.intervention = history.state.intervention; 
+   console.log(this.devis);
+   console.log(this.intervention);
   }
 
- async submit() {
+  submit() {
      console.log(this.devis);
    
-    const loading = await this.LoadingCtrl.create({message: 'Loading...'});
-    loading.present();
 
-    this.devisService.post(this.devis);
-    loading.dismiss();
+    this.devisService.create(this.devis);
+    
+  }
+  
+  addIntervention() {
+    this.router.navigateByUrl('/home/devis/devis-par-etapes/intervention', { state:  { client : history.state.client, interventions: this.devis.interventions} });
   }
 
 }

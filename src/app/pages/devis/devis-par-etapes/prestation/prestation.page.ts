@@ -19,6 +19,7 @@ export class PrestationPage implements OnInit {
     client : {},
     interventions : [],
   }
+  intervention : any
   constructor(private router: Router,
               private toastService: ToastService,
               private prestationService: PrestationService) { }
@@ -26,7 +27,9 @@ export class PrestationPage implements OnInit {
     console.log(history.state);
     this.devis.client = history.state.client;
    this.devis.interventions = history.state.interventions; 
+   this.intervention = history.state.intervention; 
    console.log(this.devis);
+     console.log(this.intervention);
   }
   async ionViewWillEnter() { 
     this.prestations = [];
@@ -36,18 +39,16 @@ export class PrestationPage implements OnInit {
       this.prestations =  data['data'];
     });
     }
-    id = {}
   choice(id: number) {
-    this.id = id
-    console.log(this.id); 
+    this.intervention['prestation']  = id
+    console.log(this.intervention);
   }
   submit() {
-    if(this.id == null) {
+    console.log(this.devis);
+    if(this.intervention['prestation'] == null) {
       this.toastService.presentToast('choisir une prestation');
     } else {
-     this.devis.interventions[history.state.interventions.length - 1]['prestation'] = this.id
-      console.log(this.devis +' ' +  this.devis.interventions[history.state.interventions.length - 1]);
-      this.router.navigateByUrl('/home/devis/devis-par-etapes/traveaux', { state:  this.devis});
+      this.router.navigateByUrl('/home/devis/devis-par-etapes/traveaux', { state:  { client : this.devis.client, interventions: this.devis.interventions, intervention : this.intervention}});
     } 
   }
 }

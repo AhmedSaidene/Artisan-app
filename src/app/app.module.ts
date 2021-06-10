@@ -11,8 +11,13 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { StorageService } from '../app/services/storage.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import {SideMenueHeaderComponent} from '../app/components/side-menue-header/side-menue-header.component';
+
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, 
+    SideMenueHeaderComponent
+  ],
   entryComponents: [],
   imports: [
     BrowserModule, 
@@ -20,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule, 
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

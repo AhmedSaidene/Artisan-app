@@ -1,2 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button icon="menu">
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Catégorie</ion-title>
+  </ion-toolbar>
+</ion-header>
+ <ion-content fullscreen="true" class="ion-padding">
+   
+    <ion-searchbar placeholder="Recherche" ></ion-searchbar>
+    
+    <ion-button class="add-btn" expand="block">
+      <ion-icon name="add-circle-sharp"></ion-icon>
+    Ajouter une catégorie
+    </ion-button>
 
-<ion-router-outlet></ion-router-outlet>
+<ion-button  *ngFor = "let categorie of categories"  
+             expand="block"
+             [routerLink]="[categorie.id, categorie.lib]">
+  {{ categorie.lib }}
+  <img slot="start" [src]="categorie.img" [alt]="categorie.lib" >
+</ion-button>
+
+</ion-content>

@@ -16,8 +16,8 @@ export class InterventionPage implements OnInit {
  hideAddBtn = false
  //resultat
   devis = {
-    client : {},
-    interventions : []
+    client : null,
+    interventions : null
   }
   //choix
   intervention = {
@@ -32,9 +32,17 @@ index : {}
     console.log(history.state);
     this.devis.client = history.state.client; 
     this.devis.interventions = history.state.interventions; 
+    //console.log(this.devis['interventions'].length)
+    
     console.log(this.devis);
   }
-  async ionViewWillEnter() { 
+  async ionViewDidEnter() { 
+    console.log(history.state);
+    this.devis.client = history.state.client; 
+    this.devis.interventions = history.state.interventions; 
+    console.log(this.devis['interventions'].length)
+    
+    console.log(this.devis);
     this.favourite = [];
     this.interventionService.getFavorite()
     .subscribe( data => {
@@ -43,8 +51,7 @@ index : {}
     });
     }
   choice(id: number) {
-    this.intervention.id = id;
-    console.log(this.devis); 
+    this.intervention['id'] = id;
     console.log(this.intervention); 
   }
   add() {
@@ -61,13 +68,17 @@ index : {}
     if (this.intervention.id == null){
       this.toastService.presentToast('choisir une intervention !');
     } else {
-      this.intervention.index = this.devis.interventions.length
-      console.log(this.intervention); 
-    this.devis.interventions.push(this.intervention)
+     if ( this.devis.interventions.length == 0) {
+      this.intervention.index = 0
+     } else {
+     // console.log(this.devis.interventions[this.devis.interventions.length - 1].index)
+      this.intervention['index'] = this.devis.interventions[history.state.interventions.length - 1]['index'] + 1
+     }
+      console.log(this.intervention);
     console.log(this.devis);
     console.log('after pushing intervention' + this.devis.interventions);
     this.router.navigateByUrl('/home/devis/devis-par-etapes/prestation', 
-    { state:  this.devis });
+    { state:  {client : this.devis.client , interventions : this.devis.interventions , intervention : this.intervention}});
     }
   }
 

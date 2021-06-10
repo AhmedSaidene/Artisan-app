@@ -33,10 +33,6 @@ const routes: Routes = [
     loadChildren: () => import('./model-devis/model-devis.module').then( m => m.ModelDevisPageModule)
   },
   {
-    path: 'categories',
-    loadChildren: () => import('./categories/categories-routing.module').then( m => m.CategoriesPageRoutingModule)
-  },
-  {
     path: 'travail',
     loadChildren: () => import('./travail/travail.module').then( m => m.TravailPageModule)
   },
@@ -51,7 +47,19 @@ const routes: Routes = [
   {
     path: 'compte',
     loadChildren: () => import('./compte/compte.module').then( m => m.ComptePageModule)
-  }
+  },
+  {
+    path: 'categories',
+    loadChildren: () => import('./categories/categories.module').then( m => m.CategoriesPageModule)
+  },
+  {
+    path: 'categories/:id/:lib',
+    loadChildren: () => import('./categorie/categorie.module').then( m => m.CategoriePageModule)
+  },
+  {
+    path: 'produit',
+    loadChildren: () => import('./produit/produit.module').then( m => m.ProduitPageModule)
+  },
 ];
 
 @NgModule({

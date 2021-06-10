@@ -17,7 +17,6 @@ export class ClientService {
  constructor( private httpService: HttpService,
               private storage: StorageService)
               {
-                
                 this.storage.get('entreprise_id').then((val) => {
                   this.entrepriseId = val;            
                 }); 
@@ -29,6 +28,9 @@ export class ClientService {
 
   checkClientByEmail(email: string) {
     return this.httpService.get('clients/email/', email);
+  }
+  getForDocument(id: number) {
+    return this.httpService.get('clients/doc/', id);
   }
   search(nom: string) {
     return this.httpService.get('clients/nom/' + nom + '/', this.entrepriseId);

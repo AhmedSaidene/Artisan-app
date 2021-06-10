@@ -4,7 +4,7 @@ import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
 import { ToastService } from './toast.service';
 import { HttpService } from './http.service';
-import { AppComponent } from '../app.component';
+import { ToastController } from '@ionic/angular';
 
 
 @Injectable({
@@ -38,60 +38,24 @@ export class AuthService {
         console.log(data)
 
       this.storage.set('token', data['token']);
-      this.storage.set('entreprise_id', data['data']['entreprise_id']);
-      this.storage.set('id', data['data']['id']);
+      this.storage.set('entreprise_id', data['entreprise_id']);
+      this.storage.set('id', data['id']);
 
-     
-      this.storage.set('role', data['data']['role']);
-      this.storage.set('nom', data['data']['nom'] + ' ' + data['data']['prenom']);
-      
       
       this.router.navigate(['home/acceuil']);
 
-      //this.Appcomponent.setUserValues(data['logo'], data['data']['nom'] + ' ' + data['data']['prenom'], data['entreprise'], data['data']['role']);
-
-     }, error => {
+        }, error => {
       console.log(error);
     });
   }
 
-  register(
-    //langue: String, 
-    nom: String, 
-    prenom: String, 
-    email: String, 
-    password: String, 
-    tel: String, 
-    entreprise_id: number,
-    role_id : number
-    ) 
+  register(user: any) 
     {
-    return this.http.post(this.domain + 'register',
-    { 
-      nom: nom, 
-      prenom: prenom, 
-      tel: tel, 
-      entreprise_id: entreprise_id, 
-      email: email, 
-      password: password,
-      role_id : role_id 
-   }
-    ).subscribe(data => {
-
-      if ( data['message'] == 'Email donné déja existe') {
-       this.toastService.presentToast('Email donné déja existe');
-      } else {
-      this.storage.set('token', data['token']);
-      this.storage.set('entreprise_id', data['data']['entreprise_id']);
-      this.storage.set('id', data['data']['id']);      
-      }
-    }
-    );
+    return this.http.post(this.domain + 'register',user);
   }
 
   logout() {
     this.storage.clear();
-
     this.router.navigate(['/login']);
   }
 }

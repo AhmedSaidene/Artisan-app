@@ -1,0 +1,19 @@
+<div class="popover-container">
+  <form action="">
+    <ion-label>IBAN</ion-label>
+    <ion-item lines="none" class="input-item">
+     <ion-input  [(ngModel)]="iban" name="iban"
+     placeholder="Nom produit"  type="text"></ion-input>
+    </ion-item>
+
+    <ion-label>SWIFT_BIC</ion-label>
+    <ion-item lines="none" class="input-item">
+     <ion-input  [(ngModel)]="swift" name="swift"
+     placeholder="Nom produit"  type="text"></ion-input>
+    </ion-item>
+
+    <ion-button size="default" class="btn-submit" (click)="close()">
+      <p>Ok</p>
+      </ion-button>
+  </form>
+</div>

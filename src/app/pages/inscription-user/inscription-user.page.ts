@@ -1,10 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { EntrepriseService } from 'src/app/services/entreprise.service';
+import { ModelDevisService } from 'src/app/services/model-devis.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-inscription-user',
@@ -14,47 +18,50 @@ import { ToastService } from 'src/app/services/toast.service';
 export class InscriptionUserPage implements OnInit {
   
   
-  public postData = {
-    //langue : "",
-    nom : "",
-    prenom : "",
-    email: "",
-    password: "",
-    tel : "",
-    entreprise_id : 5,
-    role_id : 1
-  }
-
+  form: FormGroup;
+  
+  
   constructor(private router: Router,
-    private toastService: ToastService,
-    private authService: AuthService) { }
+              private entrepriseService: EntrepriseService,
+              private authService: AuthService,
+              private modelDevis: ModelDevisService,
+              private toastServices: ToastService,
+              private userService: UserService) { }
 
   ngOnInit() {
-  }
-  
-    validateInputs() {
-      let email = this.postData.email.trim();
-      let password = this.postData.password.trim();
-  
-      return (email.length > 0 && password.length > 0 );
-    }
+    this.initForm();
+   }
+
    
-async submit() {
- if (this.validateInputs()) {
-  this.authService.register(
-    //this.postData.langue, 
-    this.postData.nom, 
-    this.postData.prenom, 
-    this.postData.email, 
-    this.postData.password, 
-    this.postData.tel,
-    this.postData.entreprise_id,
-    this.postData.role_id,
-    );
-    this.router.navigate(['/entreprise']);
-  } else {
-    this.toastService.presentToast('remplir les champs');
-    }
-      
-  }
+initForm() {
+  this.form = new FormGroup({
+     nom: new FormControl(null, [Validators.required]),
+    prenom:  new FormControl(null, [Validators.required]),
+   // langue: new FormControl(null, [Validators.required]),
+    email: new FormControl(null, Validators.compose([
+      Validators.required,
+      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+    ])),
+   password:  new FormControl(null, [Validators.required, Validators.minLength(6)]),
+    tel: new FormControl(null, Validators.compose([
+      Validators.required,
+      Validators.pattern('[0-9]*'),
+      Validators.minLength(8),
+      Validators.maxLength(8),
+    ])),
+    role:  new FormControl('admin',[]),
+    entrepriseId:  new FormControl(null,[]),
+ });
 }
+   
+ submit() {
+  console.log(this.form.value);
+
+  this.userService.checkClientByEmail(this.form.value.email).subscribe((data) => {
+    if(data['exist'] == true) {
+      this.toastServices.presentToast('Un utilisateur avec cet email existe déja !')
+    } else {
+      this.router.navigateByUrl('/entreprise', { state : this.form.value });
+    }
+  })
+  }}

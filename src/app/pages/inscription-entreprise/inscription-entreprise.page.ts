@@ -1,13 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoadingController, ModalController } from '@ionic/angular';
-import { Entreprise } from '../../models/entreprise.model';
-import { UserService } from '../../services/user.service';
-import { take } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { EntrepriseService } from 'src/app/services/entreprise.service';
-import { AlertService } from 'src/app/services/alert.service';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
@@ -17,33 +11,47 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class InscriptionEntreprisePage implements OnInit {
 
-  postData = {
-    lib : "",
-    email : "",
-    adresse : "",
-    tel: "",
-    logo: "aa"
-  }
+  
+  form: FormGroup;
+  user;
   
   constructor(private router: Router,
-    private entrepriseService: EntrepriseService,
-    private toastServices: ToastService) { }
+              private entrepriseService: EntrepriseService,
+              private toastServices: ToastService) { }
 
   ngOnInit() {
+    console.log(history.state)
+    this.initForm();
    }
 
+   
+   initForm() {
+  this.form = new FormGroup({
+     lib: new FormControl(null, [Validators.required]),
+    adresse:  new FormControl(null, [Validators.required]),
+   logo: new FormControl(null, []),
+    email: new FormControl(null, Validators.compose([
+      Validators.required,
+      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+    ])),
+    tel: new FormControl(null, Validators.compose([
+      Validators.required,
+      Validators.pattern('[0-9]*'),
+      Validators.minLength(8),
+      Validators.maxLength(8),
+    ]))
+ });
+}
+   
+
  submit() {
-    this.entrepriseService.post(this.postData).subscribe(
-data => {
-console.log(data);
-},
-error => {
-console.log(error);
-},
-() => {
-  this.router.navigate(['/configuration-devis']);
-  console.log(this.postData);
-}
-);
-}
-}
+  console.log(this.form.value);
+
+  this.entrepriseService.checkEntrepriseByEmail(this.form.value.email).subscribe((data) => {
+    if(data['exist'] == true) {
+      this.toastServices.presentToast('Une entreprise avec cet email existe déja !')
+    } else {
+      this.router.navigateByUrl('/configuration-devis', { state : {entreprise :this.form.value, user : history.state} });
+    }
+  })
+  }}

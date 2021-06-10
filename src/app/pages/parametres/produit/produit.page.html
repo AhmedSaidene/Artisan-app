@@ -1,0 +1,125 @@
+
+<ion-app>
+  <ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+      text="" 
+      icon="arrow-back-sharp" 
+      defaultHref="home/acceuil">
+  </ion-back-button>
+    </ion-buttons>
+    <ion-title>Modifier Produit</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content translucent="true" class="ion-padding">
+  <div class="header">
+<img [src]="img" alt="image">
+<div>
+  <ion-icon slot="end" name="camera" ></ion-icon>
+</div>
+  </div>
+  <form [formGroup]="form">
+  <ion-item lines="none"class="ion-select-item" color="primary">
+      <ion-select  slot=""  formControlName ="categorie_id"  interface="popover" placeholder="Categorie">   
+        <ion-select-option *ngFor="let categorie of categories" [value]="categorie.id">
+          <span>{{ categorie.lib}}</span>
+        </ion-select-option>
+    </ion-select>  
+  </ion-item>
+    
+    <ion-label>Nom produit</ion-label>
+    <ion-item lines="none" class="input-item">
+      <ion-icon name="pencil-outline" slot="end"></ion-icon>
+     <ion-input  formControlName="lib" 
+     placeholder="Nom produit"  type="text"></ion-input>
+    </ion-item>
+
+    <ion-label>Fabricant</ion-label>
+    <ion-item lines="none" class="input-item">
+      <ion-icon name="pencil-outline" slot="end"></ion-icon>
+      <ion-input   formControlName="fabricant" 
+      placeholder="Rabricant" type="text"></ion-input>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" class="left-col">
+          <ion-label>Prix de vente</ion-label>
+          <ion-item lines="none" class="input-item"> 
+            <ion-icon name="pencil-outline" slot="end"></ion-icon>
+            <ion-input   formControlName="prix_vente" 
+            placeholder="Reference" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+        
+      <ion-col size="6" class="left-col">
+        <ion-label>Prix d'achat</ion-label>
+        <ion-item lines="none" class="input-item"> 
+          <ion-icon name="pencil-outline" slot="end"></ion-icon>
+          <ion-input   formControlName="prix_achat" 
+          placeholder="TVA" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      </ion-row>
+   </ion-grid>
+   
+   <ion-grid>
+    <ion-row>
+      <ion-col size="6" class="left-col">
+        <ion-label>Réference</ion-label>
+        <ion-item lines="none" class="input-item"> 
+          <ion-icon name="pencil-outline" slot="end"></ion-icon>
+          <ion-input   formControlName="reference" 
+          placeholder="Reference" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      
+    <ion-col size="6" class="left-col">
+      <ion-label>TVA(%)</ion-label>
+      <ion-item lines="none" class="input-item"> 
+        <ion-icon name="pencil-outline" slot="end"></ion-icon>
+        <ion-input   formControlName="tva" 
+        placeholder="TVA" type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+    </ion-row>
+ </ion-grid>
+
+
+    <ion-label>Description</ion-label>
+    <ion-item lines="none" class="input-item">
+      <ion-textarea rows="1"   formControlName="desc" 
+      placeholder="Description" type="text"></ion-textarea>
+    </ion-item>
+
+     
+  </form>
+</ion-content>
+
+<ion-footer class="ion-padding" *ngIf="role ==='add'">
+  <ion-button [disabled]="form.invalid" class="btn-submit" expand="block" 
+  (click)="submit()">
+  Créer
+  </ion-button>
+</ion-footer>
+
+<ion-footer class="ion-padding" *ngIf="role == 'update'">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" class="left-col">
+  <ion-button class="" expand="block" 
+  (click)="delete()">Supprimer
+  </ion-button>
+      </ion-col>
+      <ion-col size="6" class="right-col">
+  <ion-button class="" expand="block" [disabled]="form.invalid"
+  (click)="submit()">Enregistrer Modification
+  </ion-button>           
+      </ion-col>
+    </ion-row>
+ </ion-grid>   
+</ion-footer>
+
+     

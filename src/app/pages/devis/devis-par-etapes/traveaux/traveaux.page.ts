@@ -15,10 +15,11 @@ added : any []
 //a variable to hide add btn if user retreave intevention
 hideAddBtn = false
 //resultat
-  devis = {
-    client : {},
-    interventions : [],
-  }
+devis = {
+  client : {},
+  interventions : [],
+}
+intervention : any
   constructor(private router: Router,
              private toastService: ToastService,
              private traveauxService: TraveauxService) { }
@@ -26,20 +27,21 @@ hideAddBtn = false
     console.log(history.state);
     this.devis.client = history.state.client;
    this.devis.interventions = history.state.interventions; 
+   this.intervention = history.state.intervention; 
    console.log(this.devis);
+     console.log(this.intervention);
   }
   async ionViewWillEnter() { 
     this.favourite = [];
-    this.traveauxService.get()
+    this.traveauxService.getFavorite()
     .subscribe( data => {
       console.log(data);
       this.favourite =  data['data'];
     });
     }
-    id = {}
     choice(id: number) {
-      this.id = id
-      console.log(this.id); 
+      this.intervention['traveaux']  = id 
+      console.log(this.intervention);
     }
     add() {
       this.hideAddBtn = true
@@ -50,11 +52,11 @@ hideAddBtn = false
       });
     }
   submit() {
-    if(this.id == null) {
+    console.log(this.devis);
+    if( this.intervention['traveaux'] == null) {
       this.toastService.presentToast('Choisir un type de traveaux');
     } else {
-      this.devis.interventions[history.state.interventions.length - 1]['traveaux'] = this.id
-      this.router.navigateByUrl('/home/devis/devis-par-etapes/produit', { state: this.devis });
+      this.router.navigateByUrl('/home/devis/devis-par-etapes/produit',  { state:  { client : this.devis.client, interventions: this.devis.interventions, intervention : this.intervention}});
     } 
   }
 }

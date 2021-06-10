@@ -1,7 +1,10 @@
 
 <div class="results-container">
-  <ion-searchbar (ionChange)="_ionChange($event)" placeholder="Recherche"></ion-searchbar>
+  <div class="searchbar-container">
+    <ion-searchbar (ionChange)="_ionChange($event)" placeholder="Recherche"></ion-searchbar>
 
+  </div>
+  
   
 <div class="client-container"  *ngFor = "let client of resultat">
   <div class="item-container" >

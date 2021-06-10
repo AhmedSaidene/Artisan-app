@@ -6,6 +6,9 @@ import { UserService } from './services/user.service';
 import { Storage } from '@ionic/storage-angular';
 import { LoginPageModule } from './pages/login/login.module';
 
+import {SideMenueHeaderComponent} from '../app/components/side-menue-header/side-menue-header.component';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -13,67 +16,26 @@ import { LoginPageModule } from './pages/login/login.module';
 })
 export class AppComponent implements OnInit {
   user = {
-    logo : {},
-    userName : {},
-    entreprise : {}
+    logo : '',
+    userName : '',
+    entreprise : '',
+    role : ''
   };
-  constructor(private authService: AuthService,
-              private userService: UserService) {
-    
-  }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(){
-    this.userService.getUserInfo().subscribe((data) => {
-      console.log(data)
-    })
-            /*
-    this.userService.getUserInfo().subscribe((data) => {
+  ngOnInit(){}
 
-      this.user.nom = data['user']['nom'];
-      this.user.img = data['entreprise']['logo'];
-      this.user.entreprise = data['entreprise']['lib'];
-     })
-     */
-  }
-  /**
-   * setUserValues(logo: string, userName: string , entreprise: string) {
+  setUserValues(logo: string, userName: string , entreprise: string, role : string) {
     this.user.logo = logo;
     this.user.userName = userName;
     this.user.entreprise =entreprise;
+    this.user.role = role;
   }
-   */
+   
 
   logout() {
     this.authService.logout();
   }
 }
-/**
- * public user = {
-    logo : {},
-    userName : {},
-    entreprise : {},
-    role : {}
-  };
-  constructor(private authService: AuthService,
-              private userService: UserService) {
-    
-  }
-
-  ngOnInit(){
-            
-    this.userService.getUserInfo().subscribe((data) => {
-
-      this.user.nom = data['user']['nom'];
-      this.user.img = data['entreprise']['logo'];
-      this.user.entreprise = data['entreprise']['lib'];
-     })
-     
-  }
-
-
-  logout() {
-    this.authService.logout();
-  }
- */
 
 

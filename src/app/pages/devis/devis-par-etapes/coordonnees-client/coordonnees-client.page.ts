@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, ModalController } from '@ionic/angular';
 //import { Client } from 'src/app/models/client.model';
@@ -7,6 +7,7 @@ import { StorageService } from 'src/app/services/storage.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 
+
 @Component({
   selector: 'app-coordonnees-client',
   templateUrl: './coordonnees-client.page.html',
@@ -14,19 +15,14 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 })
 export class CoordonneesClientPage implements OnInit {
 
+  @Input() clientPourDocument;
+
   form: FormGroup;
   detailsForm;
   entrepriseId;
 
- postData = {
-    nom : "",
-    email: "",
-    adr: "",
-    tel : "",
-    entrepriseId : {}
-  }
   
-    client : {}
+   // client : {}
     clientId : {}
     user={}
   
@@ -38,29 +34,26 @@ export class CoordonneesClientPage implements OnInit {
               private storage: StorageService,
               private clientService: ClientService,
               private LoadingCtrl: LoadingController,
-              private toastService: ToastService) 
+              private toastService: ToastService,
+              private modalCtrl: ModalController) 
               {
                 this.storage.get('entreprise_id').then((val) => {
-                  this.postData.entrepriseId = val;            
+                  this.entrepriseId = val;            
                 });
               }
               ngOnInit() {
                 this.initAddUserForm();
-              /* this.form.patchValue({
-                  nom: history.state.user.nom,
-                 prenom:  history.state.user.prenom,
-                 role: history.state.user.role,
-                  email: history.state.user.email,
-                  password: history.state.user.password,
-                  tel: history.state.user.tel,
-               //  entrepriseid : history.state.user.entreprise_id
-                });
-               */
+               // console.log(this.client)
+                console.log(this.clientPourDocument)
+                if(this.clientPourDocument != undefined) {
+
+                }
               }
               
               initAddUserForm() {
                 this.form = new FormGroup({
                    nom: new FormControl(null, [Validators.required]),
+                   cp: new FormControl(null, [ Validators.pattern('[0-9]*')]),
                   type: new FormControl(null, [Validators.required]),
                   adr: new FormControl(null, [Validators.required]),
                   email: new FormControl(null, Validators.compose([
@@ -88,14 +81,6 @@ choisirClient(client) {
   this.clientId = client.id;
   console.log(this.clientExiste + ' ' + this.clientId)
 }
-  isValidate() {
-   /** return (this.postData.nom !== ""
-         && this.postData.tel.i
-         && this.postData.nom !== ""
-         && this.postData.nom !== ""
-         && this.postData.nom !== "") */
-         return true
-  }
 
 //liste clients
 clients: any = [];
@@ -134,36 +119,63 @@ _ionChange(event) {
   submit() {
    console.log( this.clientExiste +' ' + this.form.value +'' + this.clientId)
 
-    if(this.clientExiste && this.clientId !== undefined ){
-     // console.log(this.clientExiste + ' ' + this.clientId)
+    if(this.clientExiste){
+      console.log(this.clientExiste);
+      console.log(this.clientId);
+      console.log(this.form.value)
+      
+if(this.clientPourDocument){
+  
+  this.modalCtrl.dismiss({
+          existe : this.clientExiste, 
+          id :  this.clientId
+     })
+}
+    else {
+     // console.log(this.client);
       this.router.navigateByUrl('/home/devis/devis-par-etapes/intervention', { state:  {client : {
-                                                                                                  existe : this.clientExiste, 
-                                                                                                  client :  this.clientId
-                                                                                                   }, 
-                                                                                         interventions : []
+        existe : this.clientExiste, 
+        client :  this.clientId
+         }, 
+interventions : []
+        }});
+    } } else {
+    if( !this.clientExiste ) {
+      if(this.clientPourDocument){
+        this.modalCtrl.dismiss({
+                existe : this.clientExiste, 
+                client :  this.form.value
+           })
+      } else {
+        this.clientService.checkClientByEmail(this.form.value.email).subscribe((res) => {
+          console.log(res);
+          if (res['exist'] == true) {
+             this.toastService.presentToast('Un client avec cet email existe déja !');
+          } else {
+      //  console.log(this.postData);
+      //  this.client = this.postData;
+       // console.log(this.client);
+       console.log(this.clientExiste);
+       console.log(this.clientId);
+       console.log(this.form.value)
+        this.router.navigateByUrl('/home/devis/devis-par-etapes/intervention', { state: {client : {
+                                                                                                     existe : this.clientExiste, 
+                                                                                                     client : this.form.value 
+                                                                                                    }, 
+                                                                                        interventions : []
                                                                                                   }});
-    } else {
-    if( !this.clientExiste && this.isValidate() ) {
-      this.clientService.checkClientByEmail(this.form.value.email).subscribe((res) => {
-        console.log(res);
-        if (res['exist'] == true) {
-           this.toastService.presentToast('Un client avec cet email existe déja !');
-        } else {
-      console.log(this.postData);
-      this.client = this.postData;
-      console.log(this.client);
-      this.router.navigateByUrl('/home/devis/devis-par-etapes/intervention', { state: {client : {
-                                                                                                   existe : this.clientExiste, 
-                                                                                                   client : this.form.value 
-                                                                                                  }, 
-                                                                                      interventions : []
-                                                                                                }});
-        }
-      })
-    } else {
+          }
+        })
+      
+      }
+  } else {
       this.toastService.presentToast('Selectionnez ou ajouter un client !');
     }
   }
+  }
+
+  closeModal() {
+    this.modalCtrl.dismiss(null)
   }
 
 }
