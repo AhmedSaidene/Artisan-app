@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { EntrepriseService } from 'src/app/services/entreprise.service';
@@ -12,7 +12,8 @@ import { ClientService } from 'src/app/services/client.service';
 import { TotalComponent } from '../../../components/total/total.component';
 import { InfoBancairesComponent } from '../../../components/info-bancaires/info-bancaires.component';
 import { NomDevisComponent } from '../../../components/nom-devis/nom-devis.component';
- 
+import { AddInterventionComponent  } from '../../../components/add-intervention/add-intervention.component';
+import { ModifierProduitComponent } from '../../../components/modifier-produit/modifier-produit.component';
 
 @Component({
   selector: 'app-devis-manuel',
@@ -26,12 +27,15 @@ export class DevisManuelPage implements OnInit {
     client : null,
     interventions : [],
   }
+  interventions = []
   intervention = {
-    id: 2,
-    index: 0,
-    prestation: 1,
+    id: null,
+    index: null,
+    prestation: null,
     produits: [],
   }
+  //produits = []
+  produit : {}
   
   /**
    * id: 2
@@ -83,6 +87,8 @@ client = {
     client_id: null,
     modelDevis: null
   }
+
+
   constructor(private router: Router,
               private toastService: ToastService,
               public popoverController: PopoverController,
@@ -93,6 +99,7 @@ client = {
               public datepipe: DatePipe) { }
   ngOnInit() {
   }
+
   async ionViewWillEnter() { 
      this.entrepriseService.getForDocument()
       .subscribe( data => { 
@@ -108,6 +115,8 @@ client = {
         this.date =this.datepipe.transform(new Date(), 'yyyy-MM-dd');
       });
   }
+
+
 async editNom() {
   const popover = await this.popoverController.create({
     component: NomDevisComponent,
@@ -155,8 +164,9 @@ this.clientService.getForDocument(client.id).subscribe((data) => {
 }
     console.log(this.client)
   }
-
 }
+
+
 
 async editTotal() {
   const popover = await this.popoverController.create({
@@ -178,7 +188,6 @@ async editTotal() {
        this.document.IBAN = null
      }
      this.document.SWIFT_BIC != infos.SWIFT_BIC
-
     }
 }
 
@@ -218,27 +227,81 @@ async editIntervention() {
   
 }
 
+
 async addIntervention() {
- 
   const modal = await this.modalCtrl.create({
-    component: ProduitPage,
+    component: AddInterventionComponent,
     componentProps: {clientPourDocument: true}
     });
     await modal.present();
-    const { data : client } = await modal.onDidDismiss();
-  
-  
+    const { data : intervention } = await modal.onDidDismiss();
+  console.log(intervention)
+}
+
+
+supprimer(produit: any) {
+  for ( let i = 0; i < this.intervention.produits.length ; i++) {
+    if (produit.id == this.intervention.produits[i].id) {
+      this.intervention.produits.splice(0, i);
+    }
+  }
+  console.log(this.intervention.produits)
+}
+
+async editProduct(produit: any) {
+  const popover = await this.popoverController.create({
+    component: ModifierProduitComponent,
+    componentProps: { produit: produit },
+    cssClass: 'popover-content'
+  });
+  await popover.present();
+  await popover.onDidDismiss().then((data) => {
+    console.log('onDidDismiss', data);
+   if (data['data'] != undefined) {
+    for ( let i = 0; i < this.intervention.produits.length ; i++) {
+      if (produit.produit_id == this.intervention.produits[i].produit_id) {
+        this.intervention.produits[i] = data['data'];
+       
+      }
+    }
+   }
+  })
+  console.log(this.intervention.produits)
 }
 
 async addProduct() {
+  
   const modal = await this.modalCtrl.create({
     component: ProduitPage,
-    componentProps: {clientPourDocument: true}
+    componentProps : {documentManuel : true}
     });
     await modal.present();
-    const { data : client } = await modal.onDidDismiss();
+    const { data : produits } = await modal.onDidDismiss();
+    console.log(produits)
+if(produits != undefined) {
 
-  
+  this.interventions.push(this.intervention)
+  this.intervention = {
+    id: null,
+    index: null,
+    prestation: null,
+    produits: [],
+  }
+  //this.intervention.produits = this.intervention.produits.concat(produits)
+  console.log(this.intervention.produits)
+  console.log(this.intervention.produits.concat(produits))
+}
+}
+
+addGroupe() {
+  this.interventions.push(this.intervention)
+  console.log(this.interventions)
+  this.intervention = {
+    id: null,
+    index: null,
+    prestation: null,
+    produits: [],
+  }
 }
 
 

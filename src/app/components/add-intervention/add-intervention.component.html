@@ -1,0 +1,109 @@
+<ion-app>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons  slot="end">
+      <ion-button (click)="closeModal()" slot="icon-only">
+    <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Devis Manuel</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <div class="title">
+        <p> Intervention</p>
+      </div>
+  <div fullscreen="true" class="ion-padding">
+    <p>Dans quelle partie de la maison allez vous intervenir ?</p>
+    <br>
+ 
+    <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor = "let intervention of favouriteInterventions">
+        <ion-button (click)="choiceIntervention(intervention.id)">
+          {{ intervention.img }} <br>
+          {{ intervention.lib.fr }}
+        </ion-button>
+      </ion-col>
+      <ion-col size="4" *ngFor = "let intervention of addedInterventions">
+        <ion-button (click)="choiceIntervention(intervention.id)">
+          {{ intervention.img }} <br>
+          {{ intervention.lib.fr }}
+        </ion-button>
+      </ion-col>
+      <ion-col  *ngIf="!hideAddBtnInterventions" size="4">
+        <ion-button (click)="addInterventions()" >
+          <ion-icon name="add-circle-sharp"></ion-icon>
+          Autre
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+   
+  </div>
+    </ion-slide>
+
+    
+    <ion-slide>
+      <div class="title">
+        <p>Type de prestation</p>
+      </div>
+      <div fullscreen="true" class="ion-padding">
+        <p>Choix le type de prestation</p>
+        <br>
+        <ion-button *ngFor = "let prestation of prestations" (click)="choicePrestation(prestation.id)" expand="block">
+        {{prestation.lib.fr}}
+        </ion-button>
+    
+      </div>
+    </ion-slide>
+  
+    <ion-slide>
+      <div class="title">
+        <p> Intervention</p>
+      </div>
+  <div fullscreen="true" class="ion-padding">
+    <p>Dans quelle partie de la maison allez vous intervenir ?</p>
+    <br>
+ 
+    <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor = "let traveaux of favouriteTraveaux">
+        <ion-button (click)="choiceTraveaux(traveaux.id)">
+          {{ traveaux.img }} <br>
+          {{ traveaux.lib.fr }}
+        </ion-button>
+      </ion-col>
+      <ion-col size="4" *ngFor = "let traveaux of addedTraveaux">
+        <ion-button (click)="choiceTraveaux(traveaux.id)">
+          {{ traveaux.img }} <br>
+          {{ traveaux.lib.fr }}
+        </ion-button>
+      </ion-col> 
+      
+      <ion-col  *ngIf="!hideAddBtnTraveaux" size="4">
+        <ion-button (click)="addTraveaux()" >
+          <ion-icon name="add-circle-sharp"></ion-icon>
+          Autre
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+   
+  </div>
+    </ion-slide>
+  
+  
+  </ion-slides>
+</ion-content>
+
+<ion-footer class="ion-padding" translucent="true">
+
+  <ion-button class="btn-suivant" expand="block" (click)="submit()">
+    Choisir client
+    </ion-button>
+</ion-footer>
+
+</ion-app>

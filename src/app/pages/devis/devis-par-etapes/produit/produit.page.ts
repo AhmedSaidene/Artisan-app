@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { PopoverController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { ToastService } from 'src/app/services/toast.service';
 import {ProduitsListeComponent } from '../../../../components/produits-liste/produits-liste.component';
@@ -12,6 +12,8 @@ import { ModifierProduitComponent } from '../../../../components/modifier-produi
   styleUrls: ['./produit.page.scss'],
 })
 export class ProduitPage implements OnInit {
+  @Input() documentManuel;
+
 //la resultat de recherche
   produits  = [];
  //le devis resultat : à passer dans la route
@@ -26,6 +28,7 @@ intervention : any
   constructor(private router: Router,
     private toastService: ToastService,
     private categorieService: CategorieService,
+    private modalCtrl: ModalController,
     public popoverController: PopoverController) { }
     
   ngOnInit() {
@@ -113,18 +116,24 @@ intervention : any
   }
 
   submit() {
-    console.log(this.devis);
-    if(this.devis_produits.length == 0) {
-this.toastService.presentToast('Ajouter un produit')
+    if(this.documentManuel){
+  
+      this.modalCtrl.dismiss({ produits : this.devis_produits})
     } else {
- this.intervention['produits'] = this.devis_produits
-  console.log(this.intervention);
-  this.devis.interventions.push(this.intervention)
-  console.log(this.devis);
-  this.router.navigateByUrl('/home/devis/devis-par-etapes/validation', { state:  { client : this.devis.client, interventions: this.devis.interventions }});
-    
+      console.log(this.devis);
+      if(this.devis_produits.length == 0) {
+  this.toastService.presentToast('Ajouter un produit')
+      } else {          
+   this.intervention['produits'] = this.devis_produits
+    console.log(this.intervention);
+    this.devis.interventions.push(this.intervention)
+    console.log(this.devis);
+    this.router.navigateByUrl('/home/devis/devis-par-etapes/validation', { state:  { client : this.devis.client, interventions: this.devis.interventions }});
+         }
     }
-   
+  }
+  closeModal() {
+    this.modalCtrl.dismiss(null)
   }
   
 }

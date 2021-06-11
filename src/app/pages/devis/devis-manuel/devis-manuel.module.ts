@@ -12,7 +12,9 @@ import { ClientComponent } from '../../../components/client/client.component';
 import { TotalComponent } from '../../../components/total/total.component';
 import { InfoBancairesComponent } from '../../../components/info-bancaires/info-bancaires.component';
 import { NomDevisComponent } from '../../../components/nom-devis/nom-devis.component';
- 
+import { AddInterventionComponent  } from '../../../components/add-intervention/add-intervention.component';
+import { ModifierProduitComponent } from '../../../components/modifier-produit/modifier-produit.component';
+
 
 @NgModule({
   imports: [
@@ -26,7 +28,9 @@ import { NomDevisComponent } from '../../../components/nom-devis/nom-devis.compo
     ClientComponent, 
     TotalComponent, 
     InfoBancairesComponent, 
-    NomDevisComponent
+    NomDevisComponent,
+    AddInterventionComponent,
+    ModifierProduitComponent
   ]
 })
 export class DevisManuelPageModule {}

@@ -1,14 +1,20 @@
   <ion-app>
   <ion-header>
     <ion-toolbar color="primary">
-      <ion-buttons slot="start">
+      <ion-buttons slot="start"   *ngIf="!documentManuel">
         <ion-back-button
             text=""
             icon="arrow-back-sharp" defaultHref="home/acceuil">
         </ion-back-button>
       </ion-buttons>
-      <ion-title>Création de Devis</ion-title>
-      <p slot="end">5 sur 6</p>
+
+      <ion-buttons  slot="end"  *ngIf="documentManuel">
+        <ion-button (click)="closeModal()" slot="icon-only">
+  <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>{{documentManuel ? 'Produits' : 'Création de Devis'}}</ion-title>
+      <p slot="end"   *ngIf="!documentManuel">5 sur 6</p>
     </ion-toolbar>
   </ion-header>
 
@@ -86,13 +92,16 @@
     </ion-button>
     </div>
   </ion-content>
-
 <ion-footer class="ion-padding" translucent="true">
-  <ion-button class="btn-suivant" expand="block" (click)="submit()">
-    <span class="suivant">Suivant</span>
-    <span>
-      <ion-icon size="small" name="chevron-forward"></ion-icon>
-    </span>
+  <ion-button  *ngIf="!documentManuel" class="btn-suivant" expand="block" (click)="submit()">
+  <span class="suivant">Suivant</span>
+  <span>
+    <ion-icon size="small" name="chevron-forward"></ion-icon>
+  </span>
+  </ion-button>
+
+  <ion-button  *ngIf="documentManuel" class="btn-suivant" expand="block" (click)="submit()">
+    Choisir client
     </ion-button>
 </ion-footer>
 

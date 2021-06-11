@@ -1,9 +1,29 @@
+
+  <ion-app>
+    <!--   <ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start"  *ngIf="this.clientPourDocument === undefined">
+      <ion-back-button
+          text=""
+          icon="arrow-back-sharp" defaultHref="home/acceuil">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-buttons  slot="end"  *ngIf="this.clientPourDocument != undefined">
+      <ion-button (click)="closeModal()" slot="icon-only">
+<ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{clientPourDocument ? 'Coordonnées du client' : 'Création de Devis'}}</ion-title>
+    <p slot="end" *ngIf="this.clientPourDocument === undefined">1 sur 6</p>
+  </ion-toolbar>
+</ion-header>-->
+
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button
           text=""
-          icon="arrow-back-sharp" defaultHref="home/acceuil">
+          icon="arrow-back-sharp" defaultHref="home/devis/creer-devis">
       </ion-back-button>
     </ion-buttons>
     <ion-title>Devis Manuel</ion-title>
@@ -14,16 +34,10 @@
     <ion-grid>
       <ion-row>
 
-        <ion-col size="5" class="entreprise">
+        <ion-col size="6" class="entreprise">
           <ion-label>{{entreprise.lib}}</ion-label>
           <br><ion-note><span>Adresse : </span>{{entreprise.adresse}}</ion-note>
-          <br><ion-note>entreprise.cp</ion-note>
-        </ion-col>
-        <ion-col size="2" >
-          <ion-button size="small" class="update-btn"
-          (click)="addEntreprise()">
-          <ion-icon size="small" name="pencil-outline"></ion-icon>
-          </ion-button>
+          <br><ion-note>{{entreprise.cp}}</ion-note>
         </ion-col>
         <ion-col size="2">
           <ion-button size="small" class="update-btn"
@@ -32,7 +46,7 @@
           </ion-button>
         </ion-col>
 
-        <ion-col size="3" class="devis">
+        <ion-col size="4" class="devis">
     <ion-label>{{ document.lib }}</ion-label>         
         </ion-col>
 
@@ -41,16 +55,11 @@
     
       <ion-row>
 
-        <ion-col size="5">
-          <ion-note><span>Siret : </span></ion-note>
-          <br><ion-note><span>N°TVA : </span></ion-note>
+        <ion-col size="6">
           <br><ion-note><span>Tél : </span>{{ entreprise.tel }}</ion-note>
-        </ion-col>
-        <ion-col size="2">
-          <ion-button size="small" class="update-btn"
-          (click)="AddInfo()">
-          <ion-icon size="small" name="pencil-outline"></ion-icon>
-          </ion-button>
+          
+         <!-- <ion-note><span>Siret : </span></ion-note>
+          <br><ion-note><span>N°TVA : </span></ion-note>-->
         </ion-col>
 
         <ion-col size="2">
@@ -59,7 +68,7 @@
           </ion-button>
         </ion-col>
 
-        <ion-col size="3" class="right-col">
+        <ion-col size="4" class="right-col">
       <ion-label>{{client.nom}} </ion-label>
           <br><ion-note>{{client.adresse}}</ion-note>
           <br><ion-note>{{client.cp}}</ion-note>   
@@ -81,7 +90,7 @@
        <ion-col size="8">
         <ion-row>
           <ion-label>
-            <span>Intervention : </span> Intervention
+            <span>Intervention : </span>{{intervention.id ? intervention.lib : 'Intervention'}}
           </ion-label>
         </ion-row>
         <ion-row>
@@ -97,7 +106,7 @@
        </ion-col>
 
          <ion-col size="2">
-          <ion-button size="small" class="update-btn" (click)="editIntervention()">
+          <ion-button size="small" class="update-btn" (click)="addIntervention()">
           <ion-icon size="small" name="pencil-outline"></ion-icon>
           </ion-button>
         </ion-col>
@@ -120,8 +129,8 @@
               <ion-col size="5"><p>Désignation</p></ion-col>
               <ion-col size="2"><p>Prix Unit Ht</p></ion-col>
               <ion-col size="3"><p>Prix Montant HT</p></ion-col>
-              <ion-col size="1">
-                <ion-icon name="copy"></ion-icon>
+              <ion-col size="1" class="editProduct" (click)="editProduct()">
+                <ion-icon size="small" name="pencil-outline"></ion-icon>
               </ion-col>
             </ion-row>
             <ion-row (click)="addProduct()" class="add">
@@ -134,7 +143,7 @@
 </ion-col>
       </ion-row>
 
-      <ion-row (click)="addIntervention()" class="add">
+      <ion-row (click)="addGroupe()" class="add">
         <ion-col size="11" >
           <ion-icon class="add-intervention" size="large" name="add-circle-sharp"></ion-icon>
         </ion-col>
@@ -195,18 +204,23 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
-        <ion-col size="6" class="left-col">
-    <ion-button  class="" expand="block" 
-    (click)="genrer()">Générer
-    </ion-button>
-        </ion-col>
-        <ion-col size="6" class="right-col">
-    <ion-button class="" expand="block" 
-    (click)="creerFacture()">Créer une facture
-    </ion-button>           
-        </ion-col>
-      </ion-row>
+ 
  </ion-grid>      
   </ion-content>
-  
+  <ion-footer>
+<ion-grid>
+  <ion-row>
+    <ion-col size="6" class="left-col">
+<ion-button  class="" expand="block" 
+(click)="genrer()">Générer
+</ion-button>
+    </ion-col>
+    <ion-col size="6" class="right-col">
+<ion-button class="" expand="block" 
+(click)="creerFacture()">Créer une facture
+</ion-button>           
+    </ion-col>
+  </ion-row>
+</ion-grid>
+  </ion-footer>
+  </ion-app>

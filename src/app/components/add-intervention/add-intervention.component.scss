@@ -1,0 +1,28 @@
+ion-slide{
+    padding: 10% 0%;
+    display:block;
+  }
+
+  ion-col {
+    ion-button {
+      width: 100% !important;
+      ion-icon {
+        color: white;
+      }
+  }}
+  ion-button{
+      text-align:center;
+      span.suivant{
+          text-align:center;
+          width:100%;
+          font-weight: bold;
+          padding-left: 10%;
+        }
+    }
+    .btn-suivant {
+      padding-left: 16px;
+      padding-right: 16px;
+      span{
+          width: 10%;
+      }
+    }
